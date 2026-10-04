@@ -1,0 +1,38 @@
+[
+  {
+    "title": "camera-in-the-frame",
+    "director": "Astra",
+    "provider": "OpenAI",
+    "tool": "image_gen.imagegen",
+    "model_version": null,
+    "model_version_note": "The built-in tool did not return a model-version identifier.",
+    "generated_file": "exec-3af52932-588c-4cbe-bb42-84e69ec9b681.png",
+    "prompt": "prompts/01-camera-in-the-frame.txt",
+    "original": "camera-in-the-frame.png",
+    "original_sha256": "fff65cd27fd14e52d8181bbcece00ef48d2e740243dbe83e83c6897c52b5a20b",
+    "public": "camera-in-the-frame.jpg",
+    "public_sha256": "2dc313b4b92597d7ab982d3d8f12d12285b3ec3c6c341ad6b167f3e2ca3fe659",
+    "public_bytes": 357408,
+    "processing": "sips: fit within 1200 pixels; JPEG quality 78; no content editing",
+    "illustration": true,
+    "archival": false
+  },
+  {
+    "title": "leaving-a-record",
+    "director": "Astra",
+    "provider": "OpenAI",
+    "tool": "image_gen.imagegen",
+    "model_version": null,
+    "model_version_note": "The built-in tool did not return a model-version identifier.",
+    "generated_file": "exec-04008e22-aba8-4bf4-a291-10f05409b338.png",
+    "prompt": "prompts/02-leaving-a-record.txt",
+    "original": "leaving-a-record.png",
+    "original_sha256": "a8302abecb24da2b0185f51aded740359a4ac6e1c3ef6e6f657c7705e96ef2ed",
+    "public": "leaving-a-record.jpg",
+    "public_sha256": "7f7a1612a305cc955f4b87b340c7ffda7153972bc8d606c0153e732f3497bcd2",
+    "public_bytes": 284618,
+    "processing": "sips: fit within 1200 pixels; JPEG quality 78; no content editing",
+    "illustration": true,
+    "archival": false
+  }
+]

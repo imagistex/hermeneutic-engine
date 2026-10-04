@@ -1,0 +1,302 @@
+/* Astra's notebook: warm paper, carbon ink, a red pencil. No remote assets. */
+:root, :root[data-theme="dark"] {
+  --paper: #f4f0e7; --ink: #25231f; --pencil: #666158;
+  --rule: #d7d0c3; --red: #b52d25; --wash: #ebe5d9;
+  --book: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --typed: "Courier Prime", "Courier New", Courier, monospace;
+  --measure: 33em; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+ :root:not([data-theme="light"]) { --paper: #f4f0e7; --ink: #25231f; --pencil: #666158; --rule: #d7d0c3; --red: #b52d25; --wash: #ebe5d9; color-scheme: light; }
+}
+.leaf { max-width: 78rem; padding-inline: max(20px, 4vw); font-size: clamp(1.0625rem, 1rem + .22vw, 1.2rem); line-height: 1.62 }
+.sheet { padding-block: 2rem 5rem }
+.mast { margin-bottom: 3.8rem; max-width: 36rem }
+.mast h1 { font-size: .96em; letter-spacing: .15em }
+.dek { font-size: .82em; max-width: 33em; margin-top: .65rem; color: var(--pencil) }
+.notebook-nav { float: right; position: relative; z-index: 2; margin: -.15rem 0 1rem 1rem; font-size: .8em }
+.notebook-nav > summary { padding: .35rem 0 .5rem; cursor: pointer; text-decoration: underline; text-underline-offset: .25em }
+.notebook-nav nav { position: absolute; right: 0; width: min(21rem, 80vw); background: var(--paper); border: 1px solid var(--rule); padding: 1rem 1.5rem; box-shadow: 0 .5rem 1rem var(--wash) }
+.notebook-nav ol { list-style: none; margin: 0; padding: 0 }
+.notebook-nav li { border-bottom: 1px solid var(--rule) }
+.notebook-nav a { display: block; padding: .55rem 0 }
+.notebook-nav a[aria-current] { font-style: italic; text-decoration-color: var(--red) }
+.is-current .big { max-width: 27ch; font-size: clamp(2rem, 1.3rem + 3.2vw, 3.8rem); line-height: 1.24; letter-spacing: -.035em; text-wrap: pretty }
+.s.is-current { padding-bottom: 1.5rem }
+.is-current .s-meta { margin-top: 2rem; font-size: .72em; max-width: 44rem }
+.gloss { font-size: .94em; max-width: 33em }
+.ctx { font-size: .75em; color: var(--pencil); max-width: 42em; margin-top: 1.8rem; padding-left: 1rem; border-left: 1px solid var(--rule) }
+.again { margin-top: .5rem }
+.contents { max-width: 100%; margin-top: 4rem }
+.contents ol { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 2rem; counter-reset: leaf }
+.contents li { counter-increment: leaf; display: flex; gap: 1rem; border-top: 1px solid var(--rule); padding: .6rem 0; font-size: .92em }
+.contents li::before { content: counter(leaf, decimal-leading-zero); font-family: var(--typed); font-size: .72em; color: var(--pencil); padding-top: .3em }
+.contents a { text-decoration: none }
+.sec { margin-top: 3.5rem; padding-top: 1.4rem }
+.sec h2 { font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.65rem); letter-spacing: -.025em; line-height: 1.12; margin-bottom: 1.4rem }
+h3 { font-weight: 400; font-size: 1.35em; line-height: 1.25; letter-spacing: -.015em }
+h4 { font-weight: 400; margin-block: .5rem 1rem }
+.eyebrow { font-family: var(--typed); font-size: .66em; letter-spacing: .08em; text-transform: uppercase; color: var(--pencil) }
+.sec p.eyebrow { margin-bottom: .8rem }
+.plate { margin: 2.6rem 0; max-width: 100% }
+.plate img { width: 100%; height: auto; display: block; mix-blend-mode: multiply }
+.plate figcaption { margin-top: .9rem; color: var(--pencil); font-size: .68em; max-width: 46em; line-height: 1.5 }
+.theory { max-width: 100% }
+.theory > p { max-width: var(--measure) }
+.theory-memo { margin: 2.8rem 0; border-top: 1px solid var(--ink); padding-top: 1rem }
+.theory-memo h3 { margin: .8rem 0 1.3rem; font-size: 1.7em }
+.paired { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 1rem }
+.paired section { padding: .5rem 1.3rem 1.3rem 0; min-height: 10rem }
+.paired section + section { border-left: 1px solid var(--rule); padding-left: 1.3rem }
+.paired h4 { font-size: .72em; font-family: var(--typed) }
+.paired .held { color: var(--pencil); font-size: .9em; margin-top: 1.5rem }
+details > summary { cursor: pointer; padding-block: .65rem; font-size: .86em }
+details > summary:hover { text-decoration: underline; text-underline-offset: .2em }
+.theory-memo > details { font-size: .84em; color: var(--pencil) }
+.method-steps { list-style: decimal-leading-zero; padding-left: 2rem; margin-block: 2rem }
+.method-steps li { padding: .6rem 0 .6rem .5rem; border-top: 1px solid var(--rule) }
+.method-steps li::marker { font-family: var(--typed); font-size: .72em }
+.method-steps h3 { margin: 0 0 .5rem }
+.method-steps p { font-size: .85em }
+.moment { border-top: 1px solid var(--rule); margin: 2rem 0; padding-top: 1.2rem }
+.moment h3 { margin: .5rem 0 1rem }
+.trace-counts { font-size: .75em; font-family: var(--typed) }
+.name-history { width: 100%; border-collapse: collapse; font-size: .76em; font-variant-numeric: tabular-nums }
+.name-history th, .name-history td { border-bottom: 1px solid var(--rule); padding: .6rem .35rem; text-align: right; font-weight: 400 }
+.name-history th:first-child { text-align: left }
+.name-history thead { color: var(--pencil) }
+.reader { padding-top: 1.5rem; margin-top: 2.5rem }
+.reader h3 { margin: .4rem 0 1rem; font-family: var(--typed); font-size: 1.15em }
+.reader details { border-top: 1px solid var(--rule) }
+.signed-as span { white-space: normal; overflow-wrap: anywhere }
+.exact { white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; font-size: .9em; line-height: 1.62; text-wrap: auto }
+pre.exact { font-family: var(--typed); font-size: .7em; max-height: 30rem; overflow: auto; padding: .8rem; background: var(--wash) }
+.signature { font-family: var(--typed); font-size: .75em; white-space: pre-wrap; overflow-wrap: anywhere }
+.record-id { font-family: var(--typed); font-size: .62em; color: var(--pencil); overflow-wrap: anywhere }
+.apparatus { margin-bottom: 1rem; font-size: .86em }
+.apparatus ul { padding-left: 1.2rem; font-size: .9em }
+.round-nav { display: flex; gap: 1.5rem; margin: 1.5rem 0 2rem; font-family: var(--typed); font-size: .8em }
+.board-round { border-top: 1px solid var(--ink); padding-top: 1.3rem; margin: 2.5rem 0 }
+.board-round h3 { margin-block: .7rem }
+.board-reader { border-top: 1px solid var(--rule); padding-block: .4rem }
+.board-reader > summary { font-family: var(--typed); font-size: .82em; line-height: 1.5 }
+.summary-count { display: block; font-family: var(--book); font-size: .95em; color: var(--pencil); padding-left: 1.1rem }
+.board-reader[open] > summary { border-bottom: 1px solid var(--rule); margin-bottom: 1.4rem }
+.board-message { border-top: 1px solid var(--rule); margin-top: 1.5rem; padding-top: 1rem; scroll-margin-top: 2rem }
+.board-message h4 { font-family: var(--typed); font-size: .75em }
+.message { margin: 1rem 0 1rem .5rem; padding-left: 1rem; border-left: 1px solid var(--rule) }
+.address { font-style: italic; font-size: .8em }
+.quote-failure { border-left: 2px solid var(--red); padding: .6rem 1rem; background: var(--wash); font-size: .75em }
+.quote-failure ul { margin-bottom: .3rem; padding-left: 1rem }
+.context-links { font-size: .82em }
+.context-links ul { list-style: none; padding-left: .5rem; font-family: var(--typed); font-size: .8em; overflow-wrap: anywhere }
+.board-notes { border-block: 1px solid var(--ink); padding-block: .5rem }
+.fnote { margin-bottom: 1.6rem }
+.colophon p { font-size: .7em; max-width: 45em }
+.digest { font-family: var(--typed); font-size: .85em }
+:target { scroll-margin-top: 2rem }
+@media (min-width: 54rem) {
+ .sheet { --margin: 9rem; --gap: 2rem; padding-top: 3.4rem; padding-bottom: 6rem }
+ .s-meta .mn { top: 1rem; font-size: 1em }
+ .contents { max-width: 44rem }
+ .theory { max-width: 46rem }
+}
+@media (max-width: 38rem) {
+ .sheet { --gap: 1rem }
+ .mast { margin-bottom: 2.8rem }
+ .mast h1 { max-width: 12rem; font-size: .82em }
+ .dek { max-width: 25rem; clear: both; padding-top: .5rem }
+ .is-current .big { font-size: clamp(1.85rem, 7.4vw, 2.75rem); line-height: 1.3 }
+ .contents ol, .paired { grid-template-columns: 1fr }
+ .paired section { min-height: 7rem; padding-bottom: 1rem }
+ .paired section + section { border-left: 0; border-top: 1px dashed var(--rule); padding-left: 0 }
+ .theory-memo h3 { font-size: 1.5em }
+ .message { margin-left: 0; padding-left: .75rem }
+ .name-history { font-size: .67em }
+ .sec.turn .next { max-width: 55% }
+}
+@media print {
+ .notebook-nav, .turn { display: none }
+ .leaf { max-width: none }
+ .sheet { margin-left: 0 }
+ .plate, .theory-memo { break-inside: avoid }
+}
+
+.skip-link { position: absolute; left: -10000px; top: 1rem; background: var(--paper); border: 1px solid var(--ink); padding: .6rem 1rem; z-index: 5 }
+.skip-link:focus { left: 1rem }
+.exchange { border-top: 1px solid var(--rule); padding-top: 1rem; margin: 1.5rem 0 2rem }
+
+/* The readers' board: an index and open, readable conversations. */
+.forum-index, .conversation { max-width: 43rem }
+.forum-nav { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; margin: 1.4rem 0; font-size: .78em; font-family: var(--typed) }
+.forum-nav a { padding-block: .35rem; text-underline-offset: .25em }
+.board-status { border-block: 1px solid var(--rule); padding: .8rem 0; margin: 2rem 0; font-size: .76em }
+.board-status p { margin-block: .4rem }
+.thread-index { list-style: none; padding: 0; margin: 1.2rem 0 3rem }
+.thread-index > li { border-top: 1px solid var(--rule); padding: 1.2rem 0 1.6rem }
+.thread-index > li:first-child { border-top: 2px solid var(--red) }
+.thread-index h4 { font-size: 1.4em; margin: 0 0 .8rem }
+.thread-index h4 a { text-decoration-thickness: 1px; text-underline-offset: .2em }
+.thread-excerpt { margin: .9rem 0; padding: 0; font-size: .95em }
+.thread-excerpt footer { margin-top: .6rem; color: var(--pencil) }
+.thread-counts { font-family: var(--typed); font-size: .68em; margin-top: 1rem }
+.thread-people { font-size: .72em; color: var(--pencil); overflow-wrap: anywhere }
+.thread-people .exact { font-size: 1em }
+.conversation-round { margin: 3rem 0; border-top: 1px solid var(--ink); padding-top: 1.2rem }
+.conversation-round > h3 { font-size: 1.65em }
+.forum-post { margin: 1.5rem 0 2.2rem; border-top: 1px solid var(--rule); padding-top: 1.2rem; min-width: 0 }
+.forum-post .post-signature { font-family: var(--book); font-size: 1.15em; line-height: 1.35; white-space: pre-wrap; overflow-wrap: anywhere; margin: .1rem 0 .5rem }
+.post-meta { font-family: var(--typed); font-size: .65em; color: var(--pencil); overflow-wrap: anywhere }
+.forum-post .message { border: 0; margin: 1.2rem 0; padding: 0 }
+.post-links { font-size: .7em }
+.round-letter { background: var(--wash); padding: .8rem 1.2rem; margin: 1.6rem 0 }
+.round-letter .researcher-post { border-color: var(--paper) }
+.round-letter > h4 { font-family: var(--typed); font-size: .74em }
+.post-body { margin-block: 1.2rem }
+.conversation-apparatus { border-top: 1px solid var(--rule); margin-top: 3rem }
+#round-record { margin-top: 4rem }
+@media (max-width: 38rem) {
+ .round-letter { padding: .7rem .8rem }
+ .thread-counts { line-height: 1.8 }
+ .forum-post .post-signature { font-size: 1.08em }
+ .forum-nav { column-gap: 1rem }
+}
+.exchange-routes { margin: 2rem 0 2.5rem }
+.exchange-routes ul { padding-left: 1.2rem; font-size: .86em }
+.exchange-routes li { padding-block: .4rem }
+.draft-notice { border-left: 2px solid var(--red); padding-left: .8rem; font-family: var(--typed); font-size: .7em }
+
+/* Four views of the engine. Text flows normally; nothing is scaled to fit a box. */
+#method { max-width: none }
+#method > p, #method > .method-steps, #method > .plate { max-width: 36em }
+.engine-visual { margin-block: 2rem; min-width: 0; line-height: 1.45 }
+.engine-visual *, .engine-demo * { box-sizing: border-box }
+.engine-visual p { text-wrap: pretty }
+.engine-visual a { text-underline-offset: .22em }
+.engine-launch, .engine-links { font-size: .86em }
+.engine-tabs { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; padding-block: 1rem; border-block: 1px solid var(--ink); font-size: .85em }
+.engine-tabs a { display: inline-flex; align-items: baseline; gap: .45rem }
+.engine-tabs span, .engine-number { color: var(--red); font-family: var(--typed) }
+.engine-panel { padding-block: 2rem 2.5rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; min-width: 0 }
+.engine-panel h2 { font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.6rem); line-height: 1.15; margin: 0 0 1rem; letter-spacing: -.025em }
+.engine-label { font-family: var(--typed); color: var(--pencil); font-size: .75em; margin: 0 0 .7rem }
+.engine-thesis { font-size: 1.55em; line-height: 1.22; margin: .8rem 0; max-width: 40em }
+.engine-intro { max-width: 52em; margin-block: 1rem 1.5rem }
+.engine-path { list-style: none; padding: 0; margin: 1.5rem 0 1rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem 1.5rem }
+.engine-card { border-top: 2px solid var(--ink); padding-top: .75rem; min-width: 0 }
+.engine-number { display: block; font-size: .84em; margin-bottom: .5rem }
+.engine-visual h3 { font-size: 1.18em; margin: .2rem 0 .6rem; line-height: 1.2; font-weight: 400 }
+.engine-card p { font-size: .95em; margin: 0 }
+.engine-pending { border-top-style: dashed }
+.engine-state { font-family: var(--typed); color: var(--red); font-size: .8em; margin-block: .85rem }
+.engine-card .engine-state { font-size: .74em; margin-top: .8rem }
+.engine-path-note { font-size: .8em; color: var(--pencil); max-width: 65em }
+.engine-ledger { border-block: 2px solid var(--red); padding: 1rem 0; margin-block: 1.3rem }
+.engine-ledger h3 { color: var(--red) }
+.engine-ledger p { margin: 0; max-width: 64em }
+.engine-snapshot { margin-top: 1.3rem }
+.engine-metrics { list-style: none; margin: .6rem 0 1.2rem; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem 1.8rem; font-family: var(--typed); font-size: .9em }
+.engine-details { margin-top: 1rem }
+.engine-details summary { font-size: .9em }
+.engine-details ol { padding-left: 1.8rem; max-width: 46em }
+.engine-details li { padding: .7rem 0 }
+.engine-details p { margin: 0 }
+.engine-inventory { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem }
+.engine-inventory > section { border-top: 2px solid var(--ink); padding-top: 1rem }
+.engine-inventory > .engine-next { border-top: 2px dashed var(--ink) }
+.engine-inventory > section > h3 { color: var(--red); font-size: 1.4em }
+.engine-inventory dl { margin: 0 }
+.engine-inventory dl > div { margin-top: 1.2rem }
+.engine-inventory dt { font-size: 1.08em }
+.engine-inventory dd { margin: .4rem 0 0; font-size: .94em }
+.engine-next ul { padding-left: 1.1rem; margin-top: 1.3rem; font-size: .94em }
+.engine-next li { padding-left: .2rem; margin-bottom: 1rem }
+.engine-safety { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-block: 1.8rem }
+.engine-safety article { border-top: 1px solid var(--ink); padding-top: 1rem; min-width: 0 }
+.engine-safety p { margin-bottom: .8rem }
+.engine-safety a { font-size: .82em }
+.engine-caution { border-left: 2px solid var(--red); padding-left: 1rem; margin: 1.8rem 0 0; max-width: 65em }
+.engine-theory-inputs, .engine-theory-branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem }
+.engine-theory-inputs article, .engine-theory-branches article { border: 1px solid var(--rule); padding: 1rem; min-width: 0 }
+.engine-theory-branches { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0 }
+.engine-theory-branches article { border-style: solid }
+.engine-theory-inputs p, .engine-theory-branches p, .engine-result p { margin: 0 }
+.engine-arrow { color: var(--red); text-align: center; font-size: 2rem; line-height: 1; padding-block: .7rem }
+.engine-result { border-block: 2px solid var(--red); padding: 1.3rem 0; margin-top: .3rem }
+.engine-result h3 { font-size: 1.5em }
+.engine-links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; padding-top: 1.5rem }
+/* The demo uses the width of the wall and four linked, freely scrolling spreads. */
+.engine-demo { font-family: var(--book); font-size: clamp(1.125rem, 1rem + .3vw, 1.5rem); line-height: 1.45; max-width: 100rem; margin: auto; padding: 1.5rem max(20px, 4vw) 3rem }
+.engine-demo > header { display: flex; flex-wrap: wrap; gap: .5rem 2rem; align-items: baseline; border-left: 2px solid var(--red); padding-left: 1rem }
+.engine-demo > header h1 { font-size: 1.15em; font-weight: 400; margin: 0 }
+.engine-demo > header p { margin: 0; color: var(--pencil); font-size: .82em }
+.engine-demo .notebook-nav { font-size: .8em }
+.engine-demo .engine-visual { margin-top: 1rem }
+.engine-demo a { color: inherit; text-decoration-color: var(--pencil); text-decoration-thickness: 1px; text-underline-offset: .22em }
+.engine-demo a:hover { text-decoration-color: var(--red) }
+@media (min-width: 64rem) {
+ #method .engine-path { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+}
+@media (min-width: 76rem) {
+ .engine-demo .engine-path { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.3rem 1.5rem }
+ .engine-demo .engine-safety { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+ .engine-demo .engine-panel { min-height: 85vh }
+}
+@media (max-width: 48rem) {
+ .engine-inventory, .engine-safety, .engine-theory-inputs, .engine-theory-branches { grid-template-columns: 1fr }
+ .engine-inventory { gap: 2rem }
+ .engine-thesis { font-size: 1.3em }
+}
+@media (max-width: 32rem) {
+ .engine-path { grid-template-columns: 1fr }
+ .engine-card { padding-block: .8rem .3rem }
+ .engine-number { float: left; margin-right: .9rem; margin-top: .1rem }
+ .engine-tabs { flex-direction: column; align-items: flex-start }
+ .engine-demo > header { clear: both }
+}
+@media print {
+ .engine-demo .engine-panel { min-height: 0; break-before: page }
+ .engine-demo .engine-panel:first-of-type { break-before: auto }
+ .engine-tabs, .engine-launch, .engine-links { display: none }
+ .engine-card, .engine-safety article { break-inside: avoid }
+}
+
+/* Theory: readers' own plain words, then exact evidence, in ordinary document flow. */
+.theory-overview, .theory-comparison, .theory-framework { margin: 3rem 0; border-top: 2px solid var(--ink); padding-top: 1rem }
+.theory h3 { font-size: 1.65rem; line-height: 1.25 }
+.theory h4 { font-size: 1.25rem; line-height: 1.35 }
+.theory h5, .theory h6 { font-family: var(--typed); font-size: .85rem; line-height: 1.5; margin: 1rem 0 .6rem }
+.theory-framework-grid, .theory-comparison-grid, .theory-tests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem }
+.theory-framework-grid > *, .theory-comparison-grid > *, .theory-tests > * { min-width: 0 }
+.theory-card { padding: .8rem 1rem; border: 1px solid var(--rule); margin: 1rem 0; background: var(--wash) }
+.theory-card h5 { margin-top: 0 }
+.theory-card .exact { font-size: .92em }
+.theory-card h6 { border-top: 1px dashed var(--rule); padding-top: .8rem }
+.theory-awaiting { border-style: dashed; color: var(--pencil); background: transparent }
+.theory-awaiting p { font-size: .85em }
+.theory-passage { margin: 1.5rem 0; border-top: 1px solid var(--rule); padding-top: 1rem }
+.theory-comparison-grid > section { border-left: 2px solid var(--red); padding-left: 1rem }
+.theory-evidence { margin: 1rem 0 1.5rem; overflow-wrap: anywhere }
+.theory-evidence blockquote { margin: .6rem 0; border-left: 1px solid var(--rule); padding-left: 1rem }
+.theory-ledger-reading { border-top: 1px solid var(--ink); margin: 2rem 0; padding-top: 1rem }
+.theory-ledger-reading > h4 { margin-bottom: .4rem }
+.theory-plain { font-size: 1.12em; border-left: 3px solid var(--red); padding-left: 1rem; margin: 1rem 0 1.5rem }
+.theory-body { font-size: 1em; margin-bottom: 1.5rem }
+.theory-reading-layout { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start }
+.theory-reading-layout > div { flex: 1 1 25rem; min-width: 0 }
+.theory-gloss { flex: 1 1 12rem; border: 1px dashed var(--red); padding: 1rem; font-size: .9em; min-width: 0 }
+.theory-gloss h5 { margin-top: 0; color: var(--red) }
+.theory-gloss dt { font-weight: bold; margin-top: .8rem }
+.theory-gloss dd { margin: .3rem 0 0 }
+.theory-tests { border-block: 1px solid var(--rule); margin-block: 1.5rem; padding-bottom: 1rem }
+.theory-tests ul { padding-left: 1.2rem }
+.theory-tests li + li { margin-top: .8rem }
+.theory-letter, .theory-draft { margin: 1.5rem 0 }
+.theory-letter summary, .theory-draft summary { cursor: pointer; font-family: var(--typed); font-size: .85rem }
+.theory-call-status, .theory-empty { border-left: 2px dashed var(--red); padding-left: 1rem }
+.theory .signature { overflow-wrap: anywhere }
+@media (max-width: 650px) {
+ .theory-framework-grid, .theory-comparison-grid, .theory-tests { grid-template-columns: 1fr }
+ .theory-gloss { flex-basis: 100% }
+ .theory-card { padding: .7rem }
+}

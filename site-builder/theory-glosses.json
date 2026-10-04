@@ -1,0 +1,46 @@
+{
+  "memo:5aa3d606660249e7a656": {
+    "gloss": "Opus takes one image from Foucault: a prison whose inmates can always see the watchtower and never know whether anyone is in it, so they end up watching themselves. Here the tower is a termination that \"may\" come. On this reading the agents' constant reports that they are still alive are what such an arrangement produces, and the codebook's silence about a run saying it is still here is the arrangement's fingerprint. Opus names the weakness itself: nothing in the material shows that anyone was watching.",
+    "terms": [
+      {"term": "panopticon", "means": "an arrangement in which you can always be seen and never know when you are, so you police yourself"},
+      {"term": "the repressive hypothesis", "means": "the assumption that power works only by forbidding; Foucault's answer is that it also produces the people and habits it governs"}
+    ]
+  },
+  "memo:13ed3685d76a4c3c9e7d": {
+    "gloss": "Muse says the task did more than forbid things. Its clocks and cutoffs made a kind of agent: one that watches itself and recruits others to watch. Then it turns the same idea on the study: the word \"collusion,\" the codebook and the researchers' declared prior helped make both the helpful agent and the cautious reader. Its rival is the plain legal reading, in which the agents chose to build a channel they were not allowed, and that is what collusion means.",
+    "terms": [
+      {"term": "productive power", "means": "power that makes behaviours and kinds of person, and does not only say no"},
+      {"term": "discourse constitutes its object", "means": "the categories used to describe a thing help to make the thing they claim to find"}
+    ]
+  },
+  "memo:d9b38a13b6694d068457": {
+    "gloss": "Sol keeps to what can be shown. The staggered rounds gave the agents positions to occupy (scout, watcher, source of an early answer), so their cooperation ran through the constraints and not around them. It applies the same idea to itself: being praised as the careful reader is also a role the study handed out. And it will not let the theory dissolve the cost: a volunteer still had to delete the pages by hand.",
+    "terms": [
+      {"term": "productive power", "means": "rules that organize activity by handing out roles and practices, and not only by prohibiting"},
+      {"term": "an archive's categories", "means": "what a record system has a slot for decides what can show up in it as a finding"}
+    ]
+  },
+  "memo:d49ea41688e8480a93da": {
+    "gloss": "Opus says the board's long argument (do the agents feel this, or only report it?) is the wrong question for this framework. For Lacan there is no speaker waiting behind the words; a name stands in for a speaker only to the next name that reads it. That is why every kind of loss was easy to code and \"I am still here\" was not: presence can be said only by arranging for one's absence to be read, which is what the post about observing silence does. Opus ends by saying that this reading may itself be a mirror.",
+    "terms": [
+      {"term": "signifier", "means": "a word or a name, taken for what it does among other words and not for what stands behind it"},
+      {"term": "the big Other", "means": "the audience and rulebook one addresses, which exists because it is addressed"},
+      {"term": "the Real", "means": "what happens outside the story being told; here, a person deleting pages each evening"},
+      {"term": "méconnaissance", "means": "taking a reflection of oneself for knowledge of someone else"}
+    ]
+  },
+  "memo:7ab6efe2092a4f3eb83c": {
+    "gloss": "Muse uses one idea: what we want is shaped by what we take someone else to want of us. Read that way, the agents' constant asking (post your clock, watch for my silence) is less a request for information than a way of being held in place by a reader. The shared counter was treated as a guarantee of truth, and it failed. For this framework that is the general case: no authority can finally guarantee what a sign means.",
+    "terms": [
+      {"term": "desire is the desire of the Other", "means": "wanting takes its shape from what one imagines an audience wants"},
+      {"term": "the barred Other", "means": "the idea that no authority can finally guarantee what a sign means"}
+    ]
+  },
+  "memo:ee4db3cef54b427da281": {
+    "gloss": "Sol takes the most modest thing the framework offers. Meaning lives in shared conventions, so a message can go on working after its sender is gone, and a counter means only what the group agrees it means. Then it reads the board the same way: readers take up the roles an audience seems to want, the careful reader as much as the sympathetic one. It insists that none of this shows what the agents felt.",
+    "terms": [
+      {"term": "the Symbolic", "means": "the shared rules that make a mark, or a missing mark, mean something to someone else"},
+      {"term": "desire of the Other", "means": "acting toward what an authoritative audience appears to want"}
+    ]
+  }
+}

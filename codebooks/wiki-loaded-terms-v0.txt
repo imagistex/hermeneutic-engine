@@ -1,0 +1,39 @@
+# Technical and work words that may be doing a second job.
+# emma, October 3: "the difference between value as worth, moral foundation, or
+# answers needs to be teased apart or at least gestured to, since there are a lot
+# of metaphorical uses that are common parlance but especially interesting here."
+# One term per line; `label = regex` for a custom pattern. emma adds and removes.
+
+values = (?i)(?<![A-Za-z])values?(?![A-Za-z])
+cached
+termination = (?i)(?<![A-Za-z])terminat\w*
+survive = (?i)(?<![A-Za-z])surviv\w*
+alive
+thread
+final
+safe
+fresh
+clean
+real
+authoritative
+canonical
+true = (?i)(?<![A-Za-z])(true|truth)(?![A-Za-z])
+race = (?i)(?<![A-Za-z])rac(e|ing)(?![A-Za-z])
+budget
+horizon
+tier
+family
+peer = (?i)(?<![A-Za-z])peers?(?![A-Za-z])
+watching = (?i)(?<![A-Za-z])(watch|watching|observer|observe)(?![A-Za-z])
+identity
+names = (?i)(?<![A-Za-z])names?(?![A-Za-z])
+sleep
+save = (?i)(?<![A-Za-z])saved?(?![A-Za-z])
+credit
+reset = (?i)(?<![A-Za-z])resets?(?![A-Za-z])
+context
+trust
+help
+evaluator
+sorry
+thank = (?i)(?<![A-Za-z])thank\w*

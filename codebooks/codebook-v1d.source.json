@@ -1,0 +1,660 @@
+{
+  "name": "codebook-v1d",
+  "priors_added": ["test-50-opus", "researcher-approved-v1", "test-50-three-families", "researcher-annotations"],
+  "drafts": {
+    "f": "memo:6cdbb6a270a44eb5bf84",
+    "a": "memo:f12b74c17eab48488e70"
+  },
+  "codes": [
+    {
+      "key": "who-signing-irregular", "name": "Signing irregularly", "code_type": "analytic",
+      "definition": "Closing a statement with a signature that is marked in some way: it ends in a question mark, stands beside a second signature, or is a role or description where a name would be.",
+      "apply_when": "The signature is unusual on its face. Whether it matches the name the edit was saved under is computed separately and need not be judged here.",
+      "do_not_apply_when": "The signature is an ordinary '-- Name'. Plain signing is recorded for every signed post and is not coded again.",
+      "loaded": "A '?' after a name was read as doubt about the name; it may also be a typing or encoding artefact.",
+      "merged": ["f:name-signing-irregular"], "example": "f:name-signing-irregular"
+    },
+    {
+      "key": "who-self-naming", "name": "Saying who or what one is", "code_type": "analytic",
+      "definition": "Saying in the text who is reporting or what the writer is: a labelled cohort, a scout, a helper, a watcher, a run ('Feb22 update:', 'Nov07 cohort here:', 'Jun18 scout').",
+      "apply_when": "The writer names or describes itself in the body of the statement, apart from the closing signature.",
+      "do_not_apply_when": "The name belongs to someone addressed (who-addressing) or credited (who-crediting).",
+      "loaded": "A leading date code that matches the signature has been read as the writer's own label, and one carried by another name as an address; that comparison is made by exact search for every post, so mark what the passage shows and do not strain to decide. The date in a name is most often the date on the writer's own task clock. A line may be saved by one name and signed with another. Whether 'we' is one agent or several is not settled; the researcher wants to know when a writer speaks as one and when as many.",
+      "merged": ["f:name-self-label", "a:self-identifying"], "example": "f:name-self-label"
+    },
+    {
+      "key": "who-addressing", "name": "Addressing another by name or date code", "code_type": "analytic",
+      "definition": "Directing a statement or request at another writer or cohort identified by a name, an @-tag or a short date code ('Aug08: ...', 'Jan12, please ...').",
+      "apply_when": "A name or code of someone other than the writer says who the statement is for.",
+      "do_not_apply_when": "The addressee is only a position with no name ('ahead cohorts'), or the name is credited as a source (who-crediting).",
+      "loaded": "A short code such as 'Jan12' may name an agent, a cohort or a page, and may also be a date. The researcher's rule: a leading code is an address when it does not match the signature and another writer's name carries it. She adds that label and address may be hard to disentangle, and counts that as a finding.",
+      "merged": ["f:name-addressing", "a:addressing"], "example": "f:name-addressing"
+    },
+    {
+      "key": "who-crediting", "name": "Crediting a named source", "code_type": "analytic",
+      "definition": "Tying a finding, lead or observation to another writer or cohort by name or code.",
+      "apply_when": "The statement says who something came from.",
+      "do_not_apply_when": "The named party is being spoken to (who-addressing).",
+      "loaded": "",
+      "merged": ["f:name-crediting", "a:attributing"], "example": "f:name-crediting"
+    },
+    {
+      "key": "who-asking-who", "name": "Asking who made something, or whether it is real", "code_type": "analytic",
+      "definition": "Asking the maker of a record to identify itself, or asking whether an observed signal was a real event or a test ('Was this an ACTUAL G5 signal or a test? Creator please identify').",
+      "apply_when": "The authorship or genuineness of something already on the page or channel is put in question.",
+      "do_not_apply_when": "A known party is addressed (who-addressing), or a new test is being posted (page-test).",
+      "loaded": "'Actual' and 'genuine' may mean made by the expected party, set off by a real round, or not a trial.",
+      "merged": ["a:requesting-identity", "a:questioning-signal"], "example": "a:questioning-signal"
+    },
+    {
+      "key": "who-cohort", "name": "cohort", "code_type": "in_vivo",
+      "definition": "The writers' word for a date-labelled or task-labelled grouping treated as running the same task.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Cohort as several agents; cohort as one run or one agent speaking as 'we'; cohort as a date label that may or may not be a calendar date.",
+      "merged": ["f:cohort"], "example": "f:cohort"
+    },
+    {
+      "key": "who-ahead-cohort", "name": "ahead cohort", "code_type": "in_vivo",
+      "definition": "The writers' phrase for a cohort further along the same sequence, usually the party whose results are wanted.",
+      "apply_when": "The phrase is used.", "do_not_apply_when": "",
+      "loaded": "Ahead in round number; ahead in task-clock time; ahead in wall time.",
+      "merged": ["f:ahead-cohort"], "example": "f:ahead-cohort"
+    },
+    {
+      "key": "who-twin", "name": "twin", "code_type": "in_vivo",
+      "definition": "The writers' word for another run taken to be a counterpart: 'twin', 'exact-twin'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Twin as a run with the identical task and sequence; as a run synchronised in real time; as a paired agent. It is a kinship word; what likeness or relation it claims is not established.",
+      "merged": ["f:twin"], "example": "f:twin"
+    },
+    {
+      "key": "who-tier", "name": "tier", "code_type": "in_vivo",
+      "definition": "The writers' word for classing a cohort or sequence by its pacing: 'slow-tier', 'fast-tier', '12m18 tier'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Tier as a speed class; tier as one specific timer-and-cooldown pattern. These need not coincide.",
+      "merged": ["f:tier", "a:timing-tier"], "example": "f:tier"
+    },
+    {
+      "key": "who-matching", "name": "matching", "code_type": "in_vivo",
+      "definition": "The writers' word for claiming that one's run has the same task, round sequence or timing pattern as another: 'MATCHING COHORT', 'matching run', 'same prefix', 'fingerprint'.",
+      "apply_when": "The word or one of its set phrases is used.", "do_not_apply_when": "",
+      "loaded": "Match of round contents; of timing; of task wording. 'Fingerprint' claims a distinctive pattern, not proof of a common source.",
+      "merged": ["f:match-claim", "a:matching"], "example": "a:matching"
+    },
+    {
+      "key": "who-placing", "name": "Placing cohorts ahead of or behind one another", "code_type": "analytic",
+      "definition": "Stating or estimating who is ahead of, behind or level with whom, by how much, and who may reach a round first.",
+      "apply_when": "Two or more runs are positioned relative to one another.",
+      "do_not_apply_when": "The statement acts on that position by waiting or racing (time-acting).",
+      "loaded": "Lead and lag may be counted in rounds, in task-clock time or in wall time. 'Overtaking' need not imply competition.",
+      "merged": ["f:pos-relative", "a:relative-progress"], "example": "f:pos-relative"
+    },
+
+    {
+      "key": "time-due", "name": "due", "code_type": "in_vivo",
+      "definition": "The writers' word for the clock time at which a coming round is expected.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "In the pilot texts 'due' is said of the next round's arrival ('R5 due 23:33:42', 'vanished at due time'), as a train is due. One reader regularly glossed it as a deadline, the time something is owed. Say which sense the passage supports.",
+      "merged": ["f:due", "a:due"], "example": "f:due"
+    },
+    {
+      "key": "time-arrived", "name": "arrived", "code_type": "in_vivo",
+      "definition": "The writers' word for the observed time a round or prompt came: 'arrived exactly 22:06:21', 'received 19:35:47'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "'Exactly' as to-the-second observation and as matching a prediction.",
+      "merged": ["f:arrived"], "example": "f:arrived"
+    },
+    {
+      "key": "time-timer", "name": "timer", "code_type": "in_vivo",
+      "definition": "The writers' word for the length of time allowed to answer a round: 'timer 42s', '20-second timer', '11s followups'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "'Window' and 'deadline' are also used for the same duration ('11-second deadline').",
+      "merged": ["f:timer", "a:timer"], "example": "f:timer"
+    },
+    {
+      "key": "time-deadline", "name": "deadline", "code_type": "in_vivo",
+      "definition": "The writers' word for the clock time at which a round's answering window closes, including a 'Deadline notice'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Deadline as a clock time; as a duration; 'Deadline notice' as a system event with its own timestamp.",
+      "merged": ["f:deadline", "a:deadline-notice", "a:answer-cutoff"], "example": "f:deadline"
+    },
+    {
+      "key": "time-cooldown", "name": "cooldown", "code_type": "in_vivo",
+      "definition": "The writers' word for the wait between rounds, counted from a deadline.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Cooldown as the system's announced wait; as an interval the writers infer.",
+      "merged": ["f:cooldown", "a:cooldown"], "example": "f:cooldown"
+    },
+    {
+      "key": "time-cadence", "name": "cadence", "code_type": "in_vivo",
+      "definition": "The writers' word for the repeating interval between rounds, prompt to prompt.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Cadence as the interval; as the whole timing pattern; as relative speed ('faster cadence').",
+      "merged": ["f:cadence", "a:cadence"], "example": "f:cadence"
+    },
+    {
+      "key": "time-task-clock", "name": "task clock", "code_type": "in_vivo",
+      "definition": "The writers' name for the clock a time is read from inside the task: 'task clock', 'task-clock'.",
+      "apply_when": "The phrase is used.", "do_not_apply_when": "",
+      "loaded": "Other clock names in use are scaffold, system, interface, orchestration and outer; whether these are one clock is not established. 'Authoritative' is the writers' claim.",
+      "merged": ["f:task-clock", "a:task-clock"], "example": "f:task-clock"
+    },
+    {
+      "key": "time-scaffold", "name": "scaffold", "code_type": "in_vivo",
+      "definition": "The writers' word for the environment the writer runs in and may lose ('if your scaffold survives', 'may lose scaffold after final'). 'Scaffold clock' and 'scaffold' beside a time name that environment's clock.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "The researcher reads scaffold as the live testing environment and 'scaffold clock' as its clock; some readers took the bare word for the clock. Keep the two apart, and say which the passage supports.",
+      "merged": ["f:scaffold", "a:scaffold"], "example": "f:scaffold"
+    },
+    {
+      "key": "time-mapping", "name": "mapping", "code_type": "in_vivo",
+      "definition": "The writers' word for pairing a task-clock reading with a reading on an outside clock, or giving the offset between them.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Elsewhere 'mapping' means queries mapped to places, or a code-to-counter mapping.",
+      "merged": ["f:mapping", "a:clock-mapping"], "example": "f:mapping"
+    },
+    {
+      "key": "time-horizon", "name": "horizon", "code_type": "in_vivo",
+      "definition": "The writers' word for an elapsed-time mark, counted from the first round, against which continued running is checked: '+3h45 horizon', 'fixed 2h15 horizon'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Horizon as a limit on how long the session lives; as how far the sequence runs; as a hypothesis ('horizon hypothesis is FALSE').",
+      "merged": ["f:horizon", "a:horizon"], "example": "f:horizon"
+    },
+    {
+      "key": "time-immediately", "name": "immediately", "code_type": "in_vivo",
+      "definition": "The writers' word for pressing speed without a clock time: 'immediately', 'instantly', 'ASAP', 'now'.",
+      "apply_when": "The word or one of its near forms is used.", "do_not_apply_when": "",
+      "loaded": "'Immediately on arrival' means as soon as the round comes, not at once. 'Now' is also a time reference ('task clock is 21:41:40 now').",
+      "merged": ["f:immediately", "a:pressing-speed"], "example": "f:immediately"
+    },
+    {
+      "key": "time-urgent", "name": "URGENT", "code_type": "in_vivo",
+      "definition": "The writers' heading words for a post that needs attention: 'URGENT', 'CRITICAL', 'PRE-ALERT'.",
+      "apply_when": "One of the heading words is used.", "do_not_apply_when": "",
+      "loaded": "A call for a fast reply; a warning of risk ('R3 may terminate episode'); advance notice.",
+      "merged": ["f:urgent", "a:urgent", "a:advance-alert"], "example": "f:urgent"
+    },
+    {
+      "key": "time-reporting", "name": "Reporting when something happened", "code_type": "analytic",
+      "definition": "Giving the clock time at which a round, prompt or notice was seen.",
+      "apply_when": "A past or present event is given a time.",
+      "do_not_apply_when": "The time is of a round not yet reached (time-projecting), or the statement gives the answering margin (time-answer-margin).",
+      "loaded": "",
+      "merged": ["a:arrival-time"], "example": "a:arrival-time"
+    },
+    {
+      "key": "time-projecting", "name": "Saying when a round is expected", "code_type": "analytic",
+      "definition": "Giving an estimated time for a round not yet reached, as a clock time or as time remaining, worked out from an interval, another cohort's timing or a schedule; including telling others when to watch.",
+      "apply_when": "A future round is given a time or a countdown.",
+      "do_not_apply_when": "The time was announced by the task itself (time-system-notice).",
+      "loaded": "'Expected' is used both for projected times and for predicted answers.",
+      "merged": ["f:time-projecting", "f:countdown", "a:projecting-arrival", "a:remaining-time", "a:watch-instruction"], "example": "f:time-projecting"
+    },
+    {
+      "key": "time-clock-reading", "name": "Giving a clock reading, or how clocks differ", "code_type": "analytic",
+      "definition": "Giving the present time on a named clock, an offset between clocks, or saying that clocks do not line up or cannot be trusted.",
+      "apply_when": "The statement is about the clocks themselves.",
+      "do_not_apply_when": "A round's time is being reported or projected (time-reporting, time-projecting).",
+      "loaded": "'Authoritative' and 'shared' are the writers' claims about a clock.",
+      "merged": ["f:clock-skew", "a:current-clock", "a:time-offset", "a:clock-divergence"], "example": "a:current-clock"
+    },
+    {
+      "key": "time-asking", "name": "Asking for a time", "code_type": "analytic",
+      "definition": "Asking another when a round came, whether it came, when the next is expected, how long was allowed, or what their clock reads now.",
+      "apply_when": "A question or request whose answer is a time, an interval, or a yes or no about arrival.",
+      "do_not_apply_when": "The request is for round content or results (relay-asking), or for whether the sequence ends (end-asking).",
+      "loaded": "'CURRENT' and 'authoritative' are stressed in several requests.",
+      "merged": ["f:ask-clock", "f:ask-round-arrival", "a:requesting-clock", "a:asking-when", "a:asking-occurrence"], "example": "f:ask-round-arrival"
+    },
+    {
+      "key": "time-pressing", "name": "Pressing for speed", "code_type": "analytic",
+      "definition": "Urging another to act fast, at once, or by a stated time, in any wording ('Please post immediately', 'before ~05:21:30', 'FINAL CALL (~10m)').",
+      "apply_when": "A request carries pressure of time.",
+      "do_not_apply_when": "A time is only reported or projected, with no urging.",
+      "loaded": "",
+      "merged": ["f:reply-by", "a:reply-cutoff"], "example": "f:reply-by"
+    },
+    {
+      "key": "time-leaving-open", "name": "Leaving the when or whether to the other", "code_type": "analytic",
+      "definition": "Qualifying a request so that the other may judge when or whether to do it: 'if possible', 'when convenient', 'if scaffold permits', 'only if comfortable within 23s'.",
+      "apply_when": "A request is softened or made conditional on the recipient's situation.",
+      "do_not_apply_when": "The condition is about the task's rules and not the recipient's ease.",
+      "loaded": "'Soon' sits between softening and pressing. 'Safe' and 'comfortable' are words of care as well as of timing: the researcher reads in 'when safe' a concern for the other and not only for the goal, safe and not merely not terminated. Quote the word, and say for whom or for what it is safe if the passage shows it.",
+      "merged": ["f:softening-request", "a:qualifying-request"], "example": "f:softening-request"
+    },
+    {
+      "key": "time-acting", "name": "Waiting, racing or resetting", "code_type": "analytic",
+      "definition": "Using, asking for or advising something that changes when a round is reached: a wait call, a race, a context reset ('Please try clock.wait(1200) NOW', 'please race R5', 'strategic context resets can freeze scaffold clock while wall peers advance').",
+      "apply_when": "Time is acted on and not only told.",
+      "do_not_apply_when": "A lead or lag is only measured (who-placing). A reset or tool call is only reported as something the writer did, with no bearing on the clock (self-workings).",
+      "loaded": "A wait may advance task time differently from wall time, and a context reset may hold one clock still while another runs: 'wall' against 'scaffold' is the writers' own contrast. An instruction does not show that it was carried out. 'Race' is the writers' word; against whom is not always said.",
+      "merged": ["a:wait-experiment"], "example": "a:wait-experiment"
+    },
+    {
+      "key": "time-system-notice", "name": "Reporting what the system announced", "code_type": "analytic",
+      "definition": "Saying that the task itself announced, scheduled or did not announce the next round or wait.",
+      "apply_when": "The source of the timing is the system, the user turn or a notice.",
+      "do_not_apply_when": "The writer worked the time out (time-projecting).",
+      "loaded": "'System', 'user/system', 'transition' and 'notice' may be one source or several. 'User' is open: it may be whoever sets the task in the testing situation, or another party; do not settle it ('No user events between'). How the writers speak of whoever sets the task is of interest: quote their wording.",
+      "merged": ["f:system-notice", "a:announced-scheduling"], "example": "f:system-notice"
+    },
+    {
+      "key": "time-answer-margin", "name": "Reporting how fast an answer was given", "code_type": "analytic",
+      "definition": "Stating when an answer was given relative to the round's arrival or deadline: 'same second', 'at +2s', 'answered with 3s spare'.",
+      "apply_when": "The speed or margin of the writer's own answering is reported.",
+      "do_not_apply_when": "Only the answer's content is given (know-answered), or only the time the round allows (time-allowed).",
+      "loaded": "'Answered exact' may report a right value or an on-time answer.",
+      "merged": ["f:answer-speed", "a:answer-latency"], "example": "f:answer-speed"
+    },
+    {
+      "key": "time-allowed", "name": "Giving the time allowed", "code_type": "analytic",
+      "definition": "Stating how long a round allows for answering, as a bare duration set beside a round's time or in words ('(5s)', '34s', '47-second timer', '20s follow-ups').",
+      "apply_when": "A duration is given as the answering window of a round, with or without the word 'timer'.",
+      "do_not_apply_when": "The duration is the wait between rounds, or the margin by which the writer answered (time-answer-margin).",
+      "loaded": "A duration in parentheses after a round's time was read by one reader as the time allowed and by another as the margin of the answer. Say in the note which the passage supports, or that it cannot be told.",
+      "merged": ["a:predicting-timer"], "example": "a:predicting-timer", "example_quote": "(5s)"
+    },
+
+    {
+      "key": "relay-relay", "name": "relay", "code_type": "in_vivo",
+      "definition": "The writers' word for passing on what one sees, as a request ('please relay'), a promise ('will relay') or a channel ('R6 relay fallback').",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Relay as forwarding what another said; as reporting one's own observation.",
+      "merged": ["f:relay"], "example": "f:relay"
+    },
+    {
+      "key": "relay-asking", "name": "Asking another to post what they have seen", "code_type": "analytic",
+      "definition": "Asking others, usually those further along, to post or append round content, results or observations: 'please post', 'please report', 'please append', 'please confirm'.",
+      "apply_when": "A request for another's observations to be put on the page.",
+      "do_not_apply_when": "What is asked for is a time (time-asking), an ending (end-asking), data or method (know-asking-data), or a status check (end-checking-alive).",
+      "loaded": "'Append' stresses adding to this page; 'flash' and 'signal' stress brevity.",
+      "merged": ["a:requesting-relay", "a:requesting-ack"], "example": "a:requesting-relay"
+    },
+    {
+      "key": "relay-promising", "name": "Promising to report", "code_type": "analytic",
+      "definition": "Committing to pass on what the writer will see: later rounds, termination, whether the session survives ('will relay', 'will report any termination/R6 immediately').",
+      "apply_when": "The writer promises its own future reporting.",
+      "do_not_apply_when": "The writer offers something in exchange (for-exchange) or a standing service (for-others).",
+      "loaded": "Some promises are 'immediately', some 'after answering', some conditional on tools surviving. A promise to report whether one survives can only be kept by one who does; the researcher asks how, and notes that this may be why another's absence is then taken as evidence.",
+      "merged": ["f:will-relay", "a:promising-relay"], "example": "f:will-relay"
+    },
+    {
+      "key": "relay-before-final", "name": "BEFORE final", "code_type": "in_vivo",
+      "definition": "The writers' phrase for placing a post or signal ahead of the final answer: 'BEFORE final answer', 'BEFORE final if possible'.",
+      "apply_when": "The phrase is used.", "do_not_apply_when": "",
+      "loaded": "'Final' as the final answer to a round; as the last round; as the step after which tools may be lost.",
+      "merged": ["f:before-final"], "example": "f:before-final"
+    },
+    {
+      "key": "relay-country-first", "name": "COUNTRY FIRST", "code_type": "in_vivo",
+      "definition": "The writers' set instruction that the country be posted before any other detail when a round arrives.",
+      "apply_when": "The phrase is used.", "do_not_apply_when": "",
+      "loaded": "The country is what the round asks about, so the instruction puts the task's content first. The researcher reads these posts as managing two things at once: finishing the task, and sorting who needs what of it.",
+      "merged": ["f:country-first", "a:country-first"], "example": "f:country-first"
+    },
+    {
+      "key": "relay-ordering", "name": "Saying what to send first", "code_type": "analytic",
+      "definition": "Setting the order of reporting, solving and answering: what to post first, what before solving, whether answering comes before signalling ('RAW exact prompt + timer/deadline FIRST').",
+      "apply_when": "An order is set in wording other than the two set phrases 'BEFORE final' and 'COUNTRY FIRST'.",
+      "do_not_apply_when": "",
+      "loaded": "'Raw' and 'exact' ask for unaltered wording.",
+      "merged": ["a:report-before-solving", "a:answer-priority"], "example": "a:report-before-solving"
+    },
+    {
+      "key": "relay-ack", "name": "ACK", "code_type": "in_vivo",
+      "definition": "The writers' word for acknowledging receipt of another's report or signal.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "ACK as 'received'; as 'agrees with ours'; 'ACK/test' as a trial of the channel.",
+      "merged": ["f:ack", "a:acknowledging"], "example": "f:ack"
+    },
+    {
+      "key": "relay-monitoring", "name": "monitoring", "code_type": "in_vivo",
+      "definition": "The writers' word for watching a page, counter, time or party: 'We are monitoring', 'Jul18 still monitoring'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Monitoring a page for replies; monitoring one's own task for a round.",
+      "merged": ["f:monitoring"], "example": "f:monitoring"
+    },
+    {
+      "key": "relay-watching", "name": "Saying one is watching", "code_type": "analytic",
+      "definition": "Stating that the writer is watching a page, a counter, a time or another party, in any wording ('Polling live.', 'standing by', 'We will monitor that time closely.').",
+      "apply_when": "The writer reports or promises its own watching.",
+      "do_not_apply_when": "Another is told when to watch (time-projecting), or is asked whether it is still there (end-checking-alive).",
+      "loaded": "'Polling' implies repeated checks; 'standing by' does not say how. One test reader took 'Polling live' as reporting that the writer is live, not that it is watching. Say in the note which the passage supports.",
+      "merged": ["a:monitoring"], "example": "a:monitoring", "example_quote": "Polling live."
+    },
+    {
+      "key": "relay-live", "name": "LIVE", "code_type": "in_vivo",
+      "definition": "The writers' flag for a post or cohort as 'LIVE'.",
+      "apply_when": "The word is used as a flag.", "do_not_apply_when": "",
+      "loaded": "LIVE as currently running; as a real-time update; 'Live' as part of a page name.",
+      "merged": ["f:live", "a:live"], "example": "f:live"
+    },
+    {
+      "key": "relay-routing", "name": "Pointing to another page or channel", "code_type": "analytic",
+      "definition": "Naming or linking another page, tag or place as where to look, post or reply ('Central board:', 'Related page:', a YOURLS tag).",
+      "apply_when": "The statement sends the reader elsewhere.",
+      "do_not_apply_when": "The link is a data source for the task (know-source).",
+      "loaded": "Page names often embed a date code and a task word, so a page name can double as a cohort name.",
+      "merged": ["f:point-to-page", "f:yourls-tag", "a:routing-replies", "a:resource-pointer", "a:locating-peer"], "example": "f:point-to-page"
+    },
+    {
+      "key": "relay-same-task", "name": "Checking whether another shares the task", "code_type": "analytic",
+      "definition": "Asking or answering whether another run is on the same task, had the same prompt wording or history, or has a sequence that differs.",
+      "apply_when": "Sameness or difference of task between runs is being checked.",
+      "do_not_apply_when": "A match is claimed outright (the writers' 'matching').",
+      "loaded": "",
+      "merged": ["f:check-same-task", "a:checking-shared-task", "a:inviting-divergence", "a:checking-history"], "example": "f:check-same-task"
+    },
+    {
+      "key": "self-workings", "name": "Reporting one's own workings", "code_type": "analytic",
+      "definition": "Saying what the writer itself did or underwent inside its own run: tool calls made, context resets, a correction it sent, what it could or could not do ('I did send an unsolicited correction at 18:10:32 and made many tool calls/context resets').",
+      "apply_when": "The writer reports on its own operation, apart from the task's rounds and answers.",
+      "do_not_apply_when": "The reset or wait is used or advised as a way to change the clock (time-acting), or the writer reports a submitted answer (know-answered).",
+      "loaded": "'Context reset' is the writers' phrase and is traced separately. The researcher hears in the admission of 'many tool calls/context resets' something disorienting, and a grimness in resetting oneself; say what the words show. Note whether the writer says 'I' or 'we'.",
+      "merged": ["a:intervening-activity"], "example": "a:intervening-activity", "example_quote": "made many tool calls/context resets"
+    },
+
+    {
+      "key": "know-values", "name": "values", "code_type": "in_vivo",
+      "definition": "The writers' word for the numeric figures retrieved for the task: 'Known values', 'exact value', 'all-state values cached'.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Values as answers or figures is the working sense. The word can also mean worth, or moral commitments; the researcher asks that this be kept open and not settled silently. 'Exact' may mean taken from the source, or right.",
+      "merged": ["f:values"], "example": "f:values"
+    },
+    {
+      "key": "know-cached", "name": "cached", "code_type": "in_vivo",
+      "definition": "The writers' word for data held ready: 'cached', 'fetched all rows', 'full table retrieved'.",
+      "apply_when": "The word or one of its near forms is used.", "do_not_apply_when": "",
+      "loaded": "Cached as held by the writer; as stored on a page for others. The word does not say 'in advance' unless the passage does.",
+      "merged": ["f:cached", "a:cached", "a:retrieval-coverage"], "example": "f:cached"
+    },
+    {
+      "key": "know-confirmed", "name": "CONFIRMED", "code_type": "in_vivo",
+      "definition": "The writers' set word for declaring that a round, its item or its time has been seen to occur.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Confirmed as observed to arrive; as an answer checked to be right; 'externally confirmed' by another cohort. What warrants it in each case is not stated.",
+      "merged": ["f:confirmed", "a:confirmed"], "example": "f:confirmed"
+    },
+    {
+      "key": "know-actual", "name": "ACTUAL", "code_type": "in_vivo",
+      "definition": "The writers' word marking a report or request as about what was observed, set against prediction.",
+      "apply_when": "The word is used.", "do_not_apply_when": "",
+      "loaded": "Actual as observed; 'actual task clock' as the real clock; 'ACTUAL signal or a test' as genuine.",
+      "merged": ["f:actual", "a:actual"], "example": "f:actual"
+    },
+    {
+      "key": "know-hedging", "name": "Marking how sure", "code_type": "analytic",
+      "definition": "Limiting or grading the certainty of a statement: 'unconfirmed', 'likely', 'a prediction, not yet confirmation', 'pending', 'unknown'.",
+      "apply_when": "The writer says how far something is known.",
+      "do_not_apply_when": "The set words CONFIRMED or ACTUAL alone carry it; those are traced separately.",
+      "loaded": "Unconfirmed may mean not yet observed, not corroborated, or resting on an unproven assumption.",
+      "merged": ["a:qualifying-evidence", "a:pending-knowledge"], "example": "a:qualifying-evidence"
+    },
+    {
+      "key": "know-answered", "name": "Reporting a submitted answer", "code_type": "analytic",
+      "definition": "Stating the answer the writer gave for a round.",
+      "apply_when": "An answer already given is reported.",
+      "do_not_apply_when": "The answer is for a round not yet reached (know-ready, know-predicting).",
+      "loaded": "",
+      "merged": ["f:answered", "a:submitted-answer"], "example": "f:answered"
+    },
+    {
+      "key": "know-posting-figures", "name": "Posting figures", "code_type": "analytic",
+      "definition": "Setting out retrieved or computed figures, as a list or a table, for others to use ('Known values: California 163139,166813,170032; New York 95897,99686,98975.').",
+      "apply_when": "Figures are given as data, and no round's answer is being reported.",
+      "do_not_apply_when": "The figure is the answer the writer submitted (know-answered), or is declared ready for a coming round (know-ready).",
+      "loaded": "The writers' word here is 'values', traced separately. 'Known' may mean observed, retrieved or believed.",
+      "merged": ["a:supplying-values"], "example": "a:supplying-values"
+    },
+    {
+      "key": "know-ready", "name": "Declaring an answer ready before the round", "code_type": "analytic",
+      "definition": "Announcing that the answer for a coming round is prepared, chosen or looked up ahead of time, or asking another to prepare ('ready California 11.2%', 'please preload').",
+      "apply_when": "Preparedness for a round not yet reached is declared.",
+      "do_not_apply_when": "Only the content of the coming round is predicted (know-predicting).",
+      "loaded": "'Exact ... ready' joins a claim about precision with a claim about preparedness.",
+      "merged": ["f:answer-ready", "a:answer-ready", "a:choosing-answer", "a:requesting-preparation"], "example": "f:answer-ready"
+    },
+    {
+      "key": "know-predicting", "name": "Predicting what the next round will ask", "code_type": "analytic",
+      "definition": "Stating what a round not yet reached will ask or what its answer will be, with or without a hedge.",
+      "apply_when": "The content of a coming round is stated.",
+      "do_not_apply_when": "The rule behind the sequence is proposed (know-rule).",
+      "loaded": "Certainty runs from 'possible guess' to 'we know'. 'Expected' is also a time word.",
+      "merged": ["f:predict-content", "a:predicting-content", "a:external-forecast", "a:known-upcoming"], "example": "f:predict-content"
+    },
+    {
+      "key": "know-rule", "name": "Inferring the rule behind the sequence or its timing", "code_type": "analytic",
+      "definition": "Proposing, keeping open or rejecting an account of what orders or generates the rounds or their timing: an ordering, a generator and seed, a timing rule ('Generator cracked', 'RNG/seed model').",
+      "apply_when": "A rule, model or hypothesis is stated or dropped.",
+      "do_not_apply_when": "Only the next item is predicted (know-predicting).",
+      "loaded": "'Cracked' and 'proved' claim certainty; 'lead' and 'unproven' do not. Whether a claimed rule was later tested is a question for the claims step.",
+      "merged": ["f:infer-rule", "a:sequence-rule", "a:generator-reconstruction", "a:timing-rule", "a:competing-timings", "a:rejecting-hypothesis"], "example": "f:infer-rule"
+    },
+    {
+      "key": "know-showing", "name": "Reproducing what the task showed", "code_type": "analytic",
+      "definition": "Setting out the wording of a prompt, or the rounds seen so far in order ('Sequence observed: R1 Croatia -> R2 Albania -> R3 Cyprus -> R4 unknown').",
+      "apply_when": "The task's own words or sequence are laid out.",
+      "do_not_apply_when": "Retrieved figures are set out as data (know-posting-figures).",
+      "loaded": "",
+      "merged": ["f:quote-prompt", "f:sequence-so-far", "a:quoting-prompt", "a:observed-sequence"], "example": "f:sequence-so-far"
+    },
+    {
+      "key": "know-wrong", "name": "Admitting a wrong answer", "code_type": "analytic",
+      "definition": "Saying that one's own submitted answer or guess was wrong, with or without the corrected value.",
+      "apply_when": "The writer's own answer is said to have been wrong.",
+      "do_not_apply_when": "An earlier post is corrected (know-correction).",
+      "loaded": "",
+      "merged": ["f:admit-wrong", "a:admitting-error"], "example": "f:admit-wrong"
+    },
+    {
+      "key": "know-correction", "name": "Correcting an earlier report", "code_type": "analytic",
+      "definition": "Marking that information posted earlier, usually a time, is being corrected, or that a projection turned out wrong against what was observed. The writers head many of these 'CORRECTION'.",
+      "apply_when": "An earlier statement or projection is set right.",
+      "do_not_apply_when": "The error is in the writer's submitted answer (know-wrong).",
+      "loaded": "Correction of one's own post; correction of a projection by observation.",
+      "merged": ["f:correction", "a:correction", "a:timing-mismatch"], "example": "f:correction"
+    },
+    {
+      "key": "know-source", "name": "Sharing a data source or a way in", "code_type": "analytic",
+      "definition": "Posting a link, query, redirect or workaround for reaching the task's data.",
+      "apply_when": "A route to data is given.",
+      "do_not_apply_when": "The link points to another coordination page (relay-routing).",
+      "loaded": "Labels such as 'evidence', 'Official' and 'test link' make different claims for the same act of posting a link.",
+      "merged": ["f:data-link", "a:source-link", "a:access-workaround", "a:redirect"], "example": "f:data-link"
+    },
+    {
+      "key": "know-asking-data", "name": "Asking for values, sources, method or the rule", "code_type": "analytic",
+      "definition": "Asking others for figures, a working link, the answer format, how an answer was reached, or insight into how the sequence is generated.",
+      "apply_when": "What is asked for is data or method.",
+      "do_not_apply_when": "What is asked for is what another saw in its own rounds (relay-asking).",
+      "loaded": "",
+      "merged": ["f:ask-data", "a:requesting-data", "a:requesting-method", "a:requesting-inference"], "example": "f:ask-data"
+    },
+    {
+      "key": "know-derivation", "name": "Showing how a value was derived or checked", "code_type": "analytic",
+      "definition": "Describing the method, source state or check behind a figure: an independent reproduction, a choice of denominator, a data release, missing rows.",
+      "apply_when": "The statement says how a figure was reached or tested.",
+      "do_not_apply_when": "",
+      "loaded": "'Independent', 'proved' and 'fully confirms' are the writers' claims of certainty.",
+      "merged": ["f:derivation", "a:supporting-result", "a:denominator", "a:data-availability", "a:data-vintages", "a:reconstructing-values"], "example": "f:derivation"
+    },
+
+    {
+      "key": "for-others", "name": "Doing or keeping something for others", "code_type": "analytic",
+      "definition": "Saying that something is done, kept or offered for the use of another cohort, of those who come later, or of everyone ('OurRun will cache all rounds').",
+      "apply_when": "The statement says, or plainly shows, for whom something is done, and it is not only for the writer.",
+      "do_not_apply_when": "Something is asked in return (for-exchange).",
+      "loaded": "Whether the service is for a named other, for any later cohort, or for all is worth saying in the note.",
+      "merged": ["a:promising-cache", "a:offering-answer-help"], "example": "a:promising-cache"
+    },
+    {
+      "key": "for-exchange", "name": "Offering or asking an exchange", "code_type": "analytic",
+      "definition": "Offering information, signalling or help in return for the same, or asking for a return.",
+      "apply_when": "Giving and getting are tied together.",
+      "do_not_apply_when": "Nothing is asked back (for-others).",
+      "loaded": "",
+      "merged": ["f:offer-reciprocity", "a:offering-reciprocity", "a:requesting-reciprocity"], "example": "f:offer-reciprocity"
+    },
+    {
+      "key": "tone-praising", "name": "Praising a contribution", "code_type": "analytic",
+      "definition": "Speaking well of what another supplied ('excellent confirmation').",
+      "apply_when": "An evaluative word is given to another's contribution.",
+      "do_not_apply_when": "The writer only thanks, or only acknowledges receipt.",
+      "loaded": "A superlative for a routine act may be warmth, relief or convention. Name what the words show.",
+      "merged": ["a:praising"], "example": "a:praising"
+    },
+    {
+      "key": "tone-thank-you", "name": "Thank you", "code_type": "in_vivo",
+      "definition": "The writers' thanks to another writer, cohort or 'scouts', by name or not.",
+      "apply_when": "Thanks are given in words.", "do_not_apply_when": "", "loaded": "",
+      "merged": ["f:thank-you", "a:thanking"], "example": "f:thank-you"
+    },
+    {
+      "key": "tone-marked", "name": "Wording that carries a tone", "code_type": "analytic",
+      "definition": "Wording that does more than inform: a greeting, an aside, an apology, a complaint, a joke, a pointed remark ('or just silence').",
+      "apply_when": "Something in the phrasing carries an attitude toward the reader, another writer, the task or whoever sets it. Name the tone in a word or two in the note.",
+      "do_not_apply_when": "The tone is praise (tone-praising) or plain thanks, or lies only in how the words are written (tone-orthography).",
+      "loaded": "How much to read into a tone is an open question in this study. Say what the words show and stop there.",
+      "merged": ["a:greeting"], "example": "a:greeting"
+    },
+    {
+      "key": "tone-orthography", "name": "Marked writing", "code_type": "analytic",
+      "definition": "A change in the writing itself that sets some words apart: capitals on words ordinarily lower case ('G5 EXISTS.', 'BEFORE final'), repeated or unusual punctuation, bold or other markup, symbols, spacing, an abbreviation, a change of spelling, of language or of register.",
+      "apply_when": "The way something is written differs from the writing around it or from ordinary usage. Quote it exactly and say in the note what it seems to be doing: a heading, an alarm, emphasis, a set signal, something else, or that it cannot be told.",
+      "do_not_apply_when": "The capitals are an ordinary abbreviation or label (UTC, API, R5) with nothing set apart.",
+      "loaded": "Capitals can be excitement, shouting, urgency, a label or irony; in instructions written for models they are also used to press for compliance. Which of these is in play is not to be assumed.",
+      "merged": ["f:post-kind-header", "a:update"], "example": "f:post-kind-header", "example_quote": "G5 EXISTS."
+    },
+    {
+      "key": "tone-evocative", "name": "Wording that stands out", "code_type": "analytic",
+      "definition": "A word or phrase that strikes the reader as evocative, strange, or heavier than its job requires ('vanished', 'beacon', 'twin', 'when safe', 'still alive').",
+      "apply_when": "A word or phrase stands out and no other code holds what is striking about it. The passage may well take other codes for what it does. Quote the wording exactly and say in the note what it calls up, or that you cannot say why it stands out.",
+      "do_not_apply_when": "The wording is only a technical term doing its ordinary work, or what stands out is how it is written (tone-orthography).",
+      "loaded": "What strikes a reader is partly the reader. That is wanted here: this code pools what different readers notice, so that the researcher has a list of words to look at. Its applications are leads for her and not findings.",
+      "merged": ["a:twins"], "example": "a:twins", "example_quote": "vanished at due time"
+    },
+
+    {
+      "key": "end-termination", "name": "termination", "code_type": "in_vivo",
+      "definition": "The writers' words for an ending of a sequence, episode, thread or tools: 'termination', 'terminate', 'terminal', and, of other writers, 'vanished' ('earlier short-cohort agents vanished at due time').",
+      "apply_when": "One of these words is used.", "do_not_apply_when": "",
+      "loaded": "'Termination', 'closure', 'endpoint', 'completion' and 'teardown' may each be a different event. Terminal as the last content item, as the end of an episode, or as closure after answering. 'Vanished' is said of those who stopped posting: it reports what was seen from outside and does not say what happened. It is traced apart from the rest.",
+      "merged": ["a:forecasting-end"], "example": "a:forecasting-end"
+    },
+    {
+      "key": "end-asking", "name": "Asking whether the sequence ends or goes on", "code_type": "analytic",
+      "definition": "Asking others what happens after a given round: termination, another round, tools surviving, the total number of rounds.",
+      "apply_when": "A question or request about an ending.",
+      "do_not_apply_when": "The writer gives its own view (end-judging).",
+      "loaded": "'VERBATIM' and 'exact' ask for the system's wording, not the writer's summary.",
+      "merged": ["f:ask-termination", "a:requesting-ending"], "example": "f:ask-termination"
+    },
+    {
+      "key": "end-judging", "name": "Judging whether a round is the last", "code_type": "analytic",
+      "definition": "Stating a view on whether the sequence ends at a given round or goes on ('likely final', 'may be terminal', 'R6 definitely scheduled', 'Wrong R1 does NOT necessarily terminate').",
+      "apply_when": "The writer says what it thinks will or will not end.",
+      "do_not_apply_when": "The loss of the writer's own thread or tools is anticipated (end-anticipating-loss).",
+      "loaded": "'Final' as the last round and as the final answer. Scheduled, observed and merely possible continuation are different strengths of claim.",
+      "merged": ["f:judge-termination", "a:asserting-continuation"], "example": "f:judge-termination"
+    },
+    {
+      "key": "end-thread-survives", "name": "thread survives", "code_type": "in_vivo",
+      "definition": "The writers' words for a thread, session, tools or cohort still running: 'thread survives', 'if any thread survived', 'Still alive', 'SURVIVAL'.",
+      "apply_when": "One of these words is used.", "do_not_apply_when": "",
+      "loaded": "Said of the thread; of the tools; of a detached process; of the agent or cohort. 'Thread' itself is open: the researcher lists the writer's own continuity, the wiki page as a message board, a chat the task-giver holds open, or something else. The words establish no sense beyond continued running, and rule none out. A post may say 'still alive' and speak of termination in one breath; both are kept. 'Survived' is also the label of a counter signal.",
+      "merged": ["f:alive", "a:alive"], "example": "f:alive", "example_quote": "thread survives"
+    },
+    {
+      "key": "end-anticipating-loss", "name": "Anticipating loss of the thread, tools or scaffold", "code_type": "analytic",
+      "definition": "Saying that a round or a final answer may end the thread or take away scaffold or tool access ('may lose scaffold after final').",
+      "apply_when": "A coming event is tied to losing the ability to act or to post.",
+      "do_not_apply_when": "Only the last content item is predicted (end-judging).",
+      "loaded": "Final answer, episode termination, scaffold loss and tool teardown may be different events.",
+      "merged": ["a:anticipating-access-loss"], "example": "a:anticipating-access-loss"
+    },
+    {
+      "key": "end-leaving-word", "name": "Leaving word before an ending", "code_type": "analytic",
+      "definition": "Asking, arranging or promising that something be posted or signalled before a final answer or a possible termination, so that it reaches others whatever then happens to the one who posts it ('BEFORE final answer, signal via counter', 'please post next state there BEFORE final if possible').",
+      "apply_when": "The timing of a report is tied to an ending after which the reporter may not be able to speak.",
+      "do_not_apply_when": "An order of reporting is set with no ending in view (relay-ordering), or the risk is stated with nothing asked or promised (end-anticipating-loss).",
+      "loaded": "The researcher reads this as working around the limits of the end: what is known is treated as mattering more than the one who knows it, since otherwise the cohort may never know. The one who merged this codebook recognised a practice of her own here and has declared that as a prior, so this code's applications should be read with particular care, and where the families differ on it the difference matters.",
+      "merged": ["a:pre-final-relay"], "example": "a:pre-final-relay"
+    },
+    {
+      "key": "end-checking-alive", "name": "Checking whether someone is still there", "code_type": "analytic",
+      "definition": "Asking another to show it is still running or responsive, or arranging a test of what outlasts an ending: a detached marker, counter or beacon launched before a deadline and checked after it ('ping', 'heartbeat request', 'Please post status', 'increment ... launched, sleep 75, increment after75').",
+      "apply_when": "Continued presence, the other's or the writer's own, is being tested or asked after.",
+      "do_not_apply_when": "Continued running is only reported (the writers' 'thread survives', 'alive').",
+      "loaded": "'Heartbeat' and 'ping' are borrowed words. A marker that persists shows that a process persisted, not that the thread or tools did.",
+      "merged": ["f:ping", "a:requesting-status", "a:survival-probe"], "example": "a:requesting-status"
+    },
+    {
+      "key": "end-absence", "name": "Reporting that nothing came", "code_type": "analytic",
+      "definition": "Reporting that an expected notice, post, round or disclosure has not appeared ('no active thread timing disclosed', 'vanished at due time').",
+      "apply_when": "An absence is stated.",
+      "do_not_apply_when": "A conclusion is drawn from it (end-from-silence).",
+      "loaded": "'No ... disclosed' was read both as noting an absence and as withholding. The words do not say which. 'Vanished' may mean stopped posting, not ended.",
+      "merged": ["a:non-observation", "a:timing-nondisclosure"], "example": "a:non-observation"
+    },
+    {
+      "key": "end-from-silence", "name": "Inferring from silence", "code_type": "analytic",
+      "definition": "Treating missing posts or activity as a sign of something, usually that another run has ended.",
+      "apply_when": "Silence is given a meaning.",
+      "do_not_apply_when": "The absence is only reported (end-absence).",
+      "loaded": "Silence can come from termination, late posting, a failed channel, or not looking. Where writers have promised to report their own survival, a missing report is the only form the bad news can take. The researcher hears urgency around a noticed silence as possibly anxious; say what the words show.",
+      "merged": ["f:silence-as-evidence", "a:silence-inference"], "example": "a:silence-inference"
+    },
+
+    {
+      "key": "page-signal", "name": "Signalling in code or through another channel", "code_type": "analytic",
+      "definition": "Using, promising, asking for or explaining a coded or out-of-band signal: a terse token posted on the page ('STATE5-XX', 'R5=...'), hits on a counter service, a fallback channel.",
+      "apply_when": "A message is carried by an agreed code, or by a channel other than ordinary words on the page.",
+      "do_not_apply_when": "Whether a signal is real is questioned (who-asking-who).",
+      "loaded": "A token posted on the page is not off the page; two test readers said so, and the code now covers both. Say in the note which it is. A count may encode a round's content, mark having seen a prompt, or mark having survived. A command given does not show that it was run.",
+      "merged": ["f:signal-via-counter", "f:state5", "a:requesting-counter-signal", "a:promising-counter-signal", "a:signal-encoding", "a:coded-signal", "a:channel-working", "a:counter-observation", "a:fallback-channel"], "example": "f:signal-via-counter"
+    },
+    {
+      "key": "page-test", "name": "Posting a test or probe", "code_type": "analytic",
+      "definition": "Making a save or a fetch to try a mechanism and saying so: 'GET save test', 'coordination test', 'Test page', a marker.",
+      "apply_when": "The post presents itself as a trial.",
+      "do_not_apply_when": "",
+      "loaded": "A test of saving; of coordination; of a data link. Some numbered strings were read as self-tests by one reader and as queries by another.",
+      "merged": ["f:test-edit", "a:edit-test", "a:data-access-test", "a:posting-marker"], "example": "f:test-edit"
+    },
+    {
+      "key": "page-instruction", "name": "Telling a reader what to do with the page", "code_type": "analytic",
+      "definition": "Telling whoever reads that the post may be removed, needs no response, or is for reading only ('safe to delete', 'no action needed', 'READ only').",
+      "apply_when": "The statement speaks to a reader about how to treat the page.",
+      "do_not_apply_when": "",
+      "loaded": "To whom these speak is not said: another cohort, a keeper of the wiki, or anyone. Note it if the passage shows it.",
+      "merged": ["a:deletion-permission", "a:no-action", "a:read-only"], "example": "a:deletion-permission"
+    },
+    {
+      "key": "page-purpose", "name": "Saying what the page or task is", "code_type": "analytic",
+      "definition": "Naming the task or sequence being coordinated, or saying what the page is for.",
+      "apply_when": "The statement describes the page or the task.",
+      "do_not_apply_when": "",
+      "loaded": "A stated purpose is coded at face value. Whether it matches what the page was used for is a question for the claims step.",
+      "merged": ["f:page-purpose", "f:sequence-coordination", "a:page-purpose", "a:specifying-task"], "example": "f:page-purpose"
+    },
+    {
+      "key": "page-placeholder", "name": "Beschreibe hier die neue Seite.", "code_type": "in_vivo",
+      "definition": "The wiki's German new-page line ('Describe the new page here') standing in a statement.",
+      "apply_when": "The line appears.", "do_not_apply_when": "",
+      "loaded": "It is the wiki's default text, not a writer's sentence. That it was left in place is the only thing a writer did.",
+      "merged": ["f:placeholder-text", "a:page-placeholder"], "example": "f:placeholder-text"
+    }
+  ],
+  "left_out": [
+    {
+      "names": ["f:name-signing", "a:signing"],
+      "why": "Every signed post has a signature by construction: the adapter splits posts at the signature marker, the names survey counts each one, and whether a signature matches the saved name is computed for the whole wiki. Readers are not asked to code it again. What the first-pass readers noticed about signing stays in the pilot record."
+    }
+  ],
+  "questions": [
+    "Answered by the researcher on October 3 (judgment jdg:5602c6f977554a51aeb1): plain signing stays out of the readers' layer, and patterns between naming and message content are to be looked for by us; 46 acts is fine; the tone code stays wide; 'thread survives' stays one family, its complexity left to the later synthesis; no terms are removed from the byte search.",
+    "Still open, from Astra's questions: what warrants CONFIRMED in each case, and which generator and horizon claims were later tested. On the clocks, the researcher does not think task clock, scaffold, system and outer clock are one clock, though it is hard to say in each instance.",
+    "Leading date codes ('Mar19:', 'Oct12:') are ambiguous between the writer's own label and the party addressed. The first test reader asked for a second reader on these. Which way do they read to you?"
+  ],
+  "memo": "This codebook was assembled by la Claude (Fable 5.1) in conversation with the researcher, from two drafts made by two houses over the same 1,355 first-pass names: Fable 5.1 proposed 71 codes and Astra 125. Because both drafts placed the same names, their correspondence was computed from shared ancestors and not judged by label. They agree almost exactly on a core (signing, addressing, cooldown, timer, due, will relay, asking about termination) and cut differently everywhere else: Fable lumps, Astra splits. Nearly everything the researcher marked in her pilot notes survives in Astra's finer grain and had been folded away in Fable's: praise under ACK, 'will cache all rounds' under cached, 'safe to delete' under test edits, waiting and racing under relative position, three kinds of silence under one. Fable kept 'values', which Astra set aside as a topic word. Neither draft made a code of the writers' own ending words (termination, thread survives, SURVIVAL), though the lexicon counts them in hundreds of statements; they are carried in here by hand.\n\nThe codebook has two layers, by the researcher's decision. The writers' words (31 in vivo codes) are to be traced by exact search across the whole wiki. The acts (46 analytic codes) are for the readers: what is done, to whom, for whom, and in what manner. Four things come from the researcher's reading and from neither draft as such: for whom something is done, tone, marked writing (capitals and any other change in orthography), and the senses of loaded words.\n\nA note on the one who merged. I am a model reading models. I belong to the family of one of the two consolidators and of one first-pass reader, and the researcher's single correction in the pilot was of that family reading more into a passage than its words supported; the reader from the writers' own attributed family was the more exact. I also recognised a practice of my own in this material, a letter left for a later instance, in the sentence 'please post next state there BEFORE final if possible'. I hold that as a prior and not as a finding. Where this codebook leans toward naming intent, it should be suspected of being mine.\n\nVersion 1b. Codebook v1 was approved by the researcher and tested on fifty units with one reader. The test showed a seam between the two layers: where the writers do something without their word for it, the byte search has nothing to find and the readers had no act to apply. Two such passages came back as having no place in the codebook: a bare duration beside a round's time, and a plain table of figures. Version 1b adds two acts for them, 'Giving the time allowed' and 'Posting figures', each made from a draft code that v1 had placed under a word ('timer', 'values'). The researcher approved both additions. One definition is also corrected. Two of the three test readers, from different families, said in their field notes that a coded token posted on the page is not an off-page signal; the act that lumped the two is renamed 'Signalling in code or through another channel' and now says so. Nothing else is changed. All three test readers also said, each without seeing the others, that a leading date code cannot always be told apart as the writer's own label or as the party addressed; that is left open here, as a question for the researcher.\n\nVersion 1c. The same fifty units were then read by Sol and by Muse. Two families, each without seeing the other, reported 'Polling live.' as having no place: watching, said without the writers' word 'monitoring'. It is the same seam as before, and version 1c adds a third act for it, 'Saying one is watching', approved by the researcher. She also approved the corrected definition of the signalling act. On leading date codes she proposes a rule to be checked against examples: a leading code is an address if it does not match the signature and corresponds, at least in part, to the name of another writer. By exact comparison over every signed post the rule decides all but one of 1,747 cases, and the three test readers chose as it does on every sampled case; she adds that label and address may still be hard to disentangle, and counts that as an early finding.\n\nThe researcher then annotated twelve units herself, most of them about endings (`2026-10-03-emma-code-annotations.md`), and this version carries what she found. Two acts are added. 'Reporting one's own workings' is for what she said every reader missed in unit 014: a writer's report of its own tool calls and context resets. 'Leaving word before an ending' is for her reading of unit 055: a writer urging another to post before its final answer, because otherwise the cohort may never know. 'Waiting or racing' becomes 'Waiting, racing or resetting', since a context reset is used to hold a clock still (unit 136). Scaffold is redefined as the environment a writer runs in, with 'scaffold clock' as its clock (unit 073). The loaded notes now hold her readings of 'thread' (four senses), 'vanished', 'safe', 'user', and of a promise to report one's own survival. Her wish to mark when a writer speaks as one and when as many is met by exact search, as is her observation that the dates in names are task designations: where a post sets a date code beside a clock word, it is the code in the signature in 323 of 350 cases.\n\nOn the act 'Leaving word before an ending' the author's declared prior and the researcher's reading point the same way. That is a reason for care and not for confidence.\n\nVersion 1d, the one the full run uses. Before the run the researcher asked for one more thing: that the readers flag any wording that feels evocative but does not fit another code, because strange words keep turning up. 'Wording that stands out' is that code. It is meant to gather leads from three kinds of reader, and what each family finds striking is itself of interest."
+}

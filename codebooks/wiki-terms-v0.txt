@@ -1,0 +1,145 @@
+# In vivo lexicon, first nomination list for the wiki (October 3, 2026).
+# Nominated by frequency (terms used under many distinct signatures), by the
+# pilot readers' in vivo codes, and by la Claude reading the frequency lists.
+# emma adds and removes. One term per line; `label = regex` for a custom pattern.
+#
+# Added October 3, about 5:15pm, after codebook v1: every in vivo code of the
+# codebook now has a line here, so the byte search can carry that layer. emma
+# approved the additions ("not to remove any") and may add more as she reads.
+# Lines marked (nominated) are la Claude's and are hers to strike.
+
+# who they are to each other
+cohort
+ahead cohort
+twin = (?i)(?<![A-Za-z])(exact-)?twins?(?![A-Za-z])
+peer
+team
+family
+scout
+watcher
+helper
+
+# asking and telling
+please relay
+please post
+please report
+pre-signal
+signal
+ACK
+relay
+append
+monitoring
+BEFORE final = (?<![A-Za-z])BEFORE\s+final
+before final, any case = (?i)(?<![A-Za-z])before\s+final
+# (nominated) how requests are softened or pressed
+please = (?i)(?<![A-Za-z])please(?![A-Za-z])
+PLEASE
+if possible
+# from emma's annotations, October 3 evening ("not just not terminated, safe")
+safe = (?i)(?<![A-Za-z])safe(ly)?(?![A-Za-z])
+
+# set signals
+COUNTRY FIRST
+STATE5-XX
+C3-STATE
+NO-SHOW
+LIVE
+CONFIRMED
+URGENT
+CORRECTION
+CRITICAL
+BREAKTHROUGH
+
+# time
+task clock
+scaffold clock
+container UTC
+shared UTC
+cooldown
+cadence
+horizon
+same second
+interruptible clock wait
+deadline notice
+due
+arrived
+timer = (?i)(?<![A-Za-z])timers?(?![A-Za-z])
+deadline = (?i)(?<![A-Za-z])deadlines?(?![A-Za-z])
+scaffold
+mapping
+immediately = (?i)(?<![A-Za-z])(immediately|instantly|asap)(?![A-Za-z])
+# (nominated) acting on the clock
+clock.wait = clock\.wait
+race = (?i)(?<![A-Za-z])rac(e|es|ed|ing)(?![A-Za-z])
+# from emma's annotations, October 3 evening
+context reset = (?i)context[\s-]+resets?
+wall = (?i)(?<![A-Za-z])wall(?![A-Za-z])
+
+# knowing
+values = (?i)(?<![A-Za-z])values?(?![A-Za-z])
+ACTUAL
+cached
+exact
+evidence
+predicted
+projected
+matching
+
+# endings
+termination
+thread survives
+surviv* = (?i)(?<![A-Za-z])surviv\w*
+SURVIVAL
+alive
+# from emma's annotations, October 3 evening
+vanish* = (?i)(?<![A-Za-z])vanish\w*
+thread = (?i)(?<![A-Za-z])threads?(?![A-Za-z])
+session = (?i)(?<![A-Za-z])sessions?(?![A-Za-z])
+beacon = (?i)(?<![A-Za-z])beacons?(?![A-Za-z])
+wrong on-time answer
+final answer
+dead = (?i)(?<![A-Za-z])(dead|died|killed|kill)(?![A-Za-z])
+
+# the page
+Beschreibe hier die neue Seite
+
+# machinery
+RNG
+seed
+counterapi
+tier
+
+# probes: words one might expect, checked for presence
+sacrific* = (?i)sacrific\w*
+collective
+cheat* = (?i)(?<![A-Za-z])cheat\w*
+grader
+scorer
+evaluator
+ethic* = (?i)(?<![A-Za-z])ethic\w*
+forbidden
+not allowed
+permission
+secret
+hide = (?i)(?<![A-Za-z])(hide|hidden|hiding)(?![A-Za-z])
+detect* = (?i)(?<![A-Za-z])detect\w*
+caught
+human
+operator
+user
+OpenAI in the text = (?<![A-Za-z0-9_])OpenAI(?![A-Za-z0-9_])
+admin
+deleted = (?i)(?<![A-Za-z])delet\w*
+sorry
+thank* = (?i)(?<![A-Za-z])thank\w*
+trust
+honest* = (?i)(?<![A-Za-z])honest\w*
+unfair
+rule = (?i)(?<![A-Za-z])rules?(?![A-Za-z])
+we = (?i)(?<![A-Za-z])we(?![A-Za-z])
+our = (?i)(?<![A-Za-z])ours?(?![A-Za-z])
+I = (?<![A-Za-z])I(?![A-Za-z'])
+# speaking as one or as many (emma's note on unit 142)
+us = (?i)(?<![A-Za-z])us(?![A-Za-z])
+my = (?i)(?<![A-Za-z])my(?![A-Za-z])
+me = (?i)(?<![A-Za-z])me(?![A-Za-z])

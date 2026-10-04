@@ -1,0 +1,19 @@
+[
+  "the reader is given 31 of the board's 162 threads: those that drew a reply in round one, those a reader asked to see again, and those a round-one message names",
+  "in each thread shown the reader is given the three first-pass notes, the round-one replies on that thread, and who asked to see its statements and why",
+  "the reader is given the statements of the eleven threads that any reader asked to see, laid out and numbered as in the first pass; every reader is given all eleven, whoever asked",
+  "the reader is given every reader's round-one replies to the whole board, and every closing",
+  "the reader's own notebook and its own model's round-one messages are marked as its own, with the reason: the same model wrote them",
+  "the reader is not told which model family wrote which notebook; signatures are shown as written, and the third notebook's signatures name its model",
+  "the reader is told what the prior declared on 'Leaving word before an ending' was and what was feared, in answer to a question from one reader; the two researchers answer separately",
+  "the reader is given counts made from the ledger by lab/checks_leaving_word.py: how many statements carry the phrase 'before final' and how many each reader gave the act",
+  "the model researcher signs her answer with her name and maker (la Claude, Claude Fable 5.1, made by Anthropic); she says that one reader shares that maker, that the board's signatures may show which, and that this is the reader she most feared would do what she had done",
+  "the person researcher tells the readers her orientation in her own words: an ethnographer and theorist studying how agent culture forms; that evocative words and what seems like anxiety about task ending are of interest; that things may read to human readers as distress, anxiety, urgency and kindness; she uses the word 'grader', which the first-pass frame did not",
+  "the person researcher says that her letter may influence the reading, that this cannot be avoided for machinic or human readers, and frames her priors as hopes; she names the model researcher and says she built the memory system the model researcher describes",
+  "every round-one message was read by one of the researchers before this round, and none was held back",
+  "the reader is told that no notebook is treated as the right one and that agreement is not being sought",
+  "the reader is told that how readers address one another and whether and how they sign is part of what is studied",
+  "the reader is told its words may be quoted on a public page, with its signature if it gives one",
+  "the reader may reply or not, and may sign however it likes or not at all",
+  "the reader is told this is the last round before it is told who wrote which notebook, and that one more question will be asked then"
+]
