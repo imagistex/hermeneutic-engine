@@ -76,20 +76,10 @@ def round_links(data, thread=None):
 
 def render_index(copy, data, fill):
     b = copy['board']
-    out = [f'<section class="sec forum-index" id="board"><p class="eyebrow">{esc(b["index_kicker"])}</p><h2>{esc(b["heading"])}</h2>',
-           paragraphs(b['forum_intro'], fill),
-           f'<nav class="forum-nav"><a href="#threads">{esc(b["threads_label"])}</a><a href="#round-record">{esc(b["archive_label"])}</a><a href="board-records.json">{esc(b["download"])}</a></nav>']
-    out.append('<div class="board-status">')
-    for r in data['board']:
-        out.append(f'<p><a href="{conversation_file("board")}#round-{r["number"]}">{esc(b["round_label"])} {r["number"]}</a> · {r["completed"]} {esc(b["of"])} {r["expected"]} {esc(b["answered"])}. {esc(b["complete"] if r["complete"] else b["incomplete"])}</p>')
-    out.append(f'</div><nav class="exchange-routes"><h3>{esc(b["exchange_heading"])}</h3><ul>')
-    for route in b.get('exchange_routes', []):
-        if route['memo'] in data['board_locations']:
-            out.append(f'<li><a href="{data["board_locations"][route["memo"]]}">{esc(route["label"])}</a></li>')
-    out.append(f'</ul></nav><h3 id="threads">{esc(b["threads_label"])}</h3><ol class="thread-index">')
+    out = [f'<section class="sec forum-index" id="board"><h2 id="threads">{esc(b["threads_label"])}</h2>',
+           f'<p>{esc(b["thread_intro"])}</p><ol class="thread-index">']
     for thread, item in data['conversations'].items():
         posts = item['posts']; counts = Counter(p['record']['memo_type'] for p in posts)
-        names = list(dict.fromkeys(signature(p, b) for p in posts))
         rounds = sorted({p['round'] for p in posts})
         heading = b['whole'] if thread == 'board' else f'{b["thread"]} {thread}'
         out.append(f'<li><article><h4><a href="{conversation_file(thread)}">{esc(heading)}</a></h4>')
@@ -101,9 +91,7 @@ def render_index(copy, data, fill):
             out.append(f'<blockquote class="thread-excerpt"><div class="exact" data-quote="{esc(memo["id"])}">{esc(excerpt(memo))}</div><footer class="signature">{esc(signature(chosen,b))}</footer></blockquote>')
         out.append(f'<p class="thread-counts">{counts["board_reply"]} {esc(b["replies"])} · {counts["board_request"]} {esc(b["requests"])} · {counts["board_closing"]} {esc(b["closings"])} · {len(item["notes"])} {esc(b["notes_label"])}</p>')
         out.append(f'<p class="small">{esc(b["rounds_label"])}: {", ".join(map(str,rounds))}</p>')
-        if thread == 'board':
-            names = [b['researchers']] + names
-        out.append(f'<p class="thread-people"><span>{esc(b["posted_by"])}:</span> '+ ' · '.join(f'<span class="exact">{esc(name)}</span>' for name in names) + '</p></article></li>')
+        out.append('</article></li>')
     out.append('</ol></section>')
     return ''.join(out)
 
@@ -179,11 +167,10 @@ def render_post(post, copy, data):
 
 def render_conversation(thread, item, copy, data):
     b=copy['board']; heading=b['whole'] if thread=='board' else f'{b["thread"]} {thread}'
-    out=[f'<section class="sec conversation"><p class="eyebrow">{esc(b["heading"])}</p><h2>{esc(heading)}</h2>',
-         f'<nav class="forum-nav"><a href="board.html#threads">{esc(b["thread_back"])}</a>']
+    out=[f'<section class="sec conversation"><h2>{esc(heading)}</h2>',
+         f'<p class="small">{esc(b["order_note"])}</p><nav class="forum-nav">']
     if thread in data['board_threads']:
         out.append(f'<a href="{thread_file(thread)}">{esc(b["statements"])}</a>')
-    out.append(f'</nav><p class="small">{esc(b["order_note"])}</p><nav class="forum-nav">')
     if item['notes']:
         out.append(f'<a href="#field-notes">{esc(b["opening_notes"])}</a>')
     for r in data['board']:
@@ -212,5 +199,5 @@ def render_conversation(thread, item, copy, data):
         for a in r['answers']:
             out.append(f'<p class="signature">{esc(a.get("signed") or b["unsigned"])}</p>')
             out.append(render_apparatus(a['apparatus'], b['apparatus']))
-    out.append(f'</details><p><a href="board.html#threads">{esc(b["thread_back"])}</a></p></section>')
+    out.append('</details></section>')
     return ''.join(out)

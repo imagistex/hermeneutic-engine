@@ -17,6 +17,11 @@ def thread_file(thread):
 def paragraphs(values, fill):
     return ''.join(f'<p>{esc(fill(p))}</p>' for p in values)
 
+def render_doors(entries):
+    return '<ul class="section-doors">' + ''.join(
+        f'<li><a href="{esc(p["file"])}">{esc(p["label"])}</a>'
+        + (f'<p>{esc(p["line"])}</p>' if p.get('line') else '') + '</li>' for p in entries) + '</ul>'
+
 def enrich(project, data, copy):
     lenses = {r['id']: r for r in project.records('lens')}
     memos = {r['id']: r for r in project.records('memo')}
@@ -147,13 +152,21 @@ def figure(copy, key):
             f'<figcaption>{esc(p["caption"])}{link}</figcaption></figure>')
 
 def render_theory(copy,data,fill,site):
-    from theory_readings import render_overview, render_comparison
+    from theory_readings import render_comparison
     b=copy['reading']; labels=b['ledger']
     out=[f'<section class="sec theory" id="reading"><h2>{esc(b["heading"])}</h2><p>{esc(b["intro"])}</p>']
-    out.append(f'<p class="theory-start" id="memo-engine"><a href="reading-engine.html#memo-engine">{esc(labels["engine_link"])}</a></p>')
-    out.append(f'<nav class="forum-nav"><a href="#theory-overview">{esc(labels["overview_heading"])}</a><a href="#theory-comparison">{esc(labels["comparison_heading"])}</a></nav>')
-    out.append(render_overview(copy,data))
+    doors=next(s['children'] for s in copy['navigation']['sections'] if s['file']=='reading.html')
+    out.append('<ul class="section-doors">')
+    for door, key, framework in zip(doors, ('engine','foucault','lacan'), (None,'foucauldian','lacanian')):
+        out.append(f'<li id="memo-{key}">')
+        if framework:
+            out.append(f'<span id="framework-{framework}"></span>')
+            # Keep old inbound card anchors at the door to their framework.
+            out.extend(f'<span id="{rid(item["record"]["id"])}"></span>' for item in data['theory'][framework]['readings'])
+        out.append(f'<a href="{esc(door["file"])}">{esc(door["label"])}</a><p>{esc(door["line"])}</p></li>')
+    out.append('</ul><div id="theory-overview">')
     if b.get('figure'): out.append(figure(copy,b['figure']))
+    out.append('</div>')
     out.append(render_comparison(copy,data))
     out.append(f'<p class="small">{esc(b["note"])}</p></section>')
     return ''.join(out)
@@ -193,10 +206,11 @@ def memo_paragraphs(values,memo,fill):
     return ''.join(out)
 
 def render_method(copy,data,fill,site):
-    from engine_visual import render_engine
     b=copy['method']
     out=f'<section class="sec" id="method"><h2>{esc(b["heading"])}</h2>{paragraphs(b["paragraphs"][:1],fill)}'
-    out+=render_engine(copy, embedded=True)+paragraphs(b['paragraphs'][1:3],fill)
+    # Old method-page links to the four embedded views still reach the instrument.
+    aliases=''.join(f'<span id="engine-{i}"></span><span id="engine-title-{i}"></span>' for i in range(1,5))
+    out+=f'<p>{aliases}<a href="engine.html">{esc(b["engine_label"])}</a></p>'+paragraphs(b['paragraphs'][1:3],fill)
     out+=plate(copy,b['plate'])+paragraphs(b['paragraphs'][3:],fill)
     return out+f'<p><a href="{esc(b["link"])}">{esc(b["link_label"])}</a></p></section>'
 
@@ -264,18 +278,31 @@ def render_round_archive(copy,data,fill,site):
 
 
 def render_board(copy,data,fill,site):
-    from board_forum import render_index
-    return render_index(copy,data,fill) + render_round_archive(copy,data,fill,site).replace('id="board"','id="round-record"',1)
+    b=copy['board']
+    doors=next(s['children'] for s in copy['navigation']['sections'] if s['file']=='board.html')
+    out=f'<section class="sec landing" id="board"><h2>{esc(b["heading"])}</h2>'
+    out+=render_doors(doors).replace('<li><a href="board-threads.html">','<li id="threads"><a href="board-threads.html">')
+    out+=f'<details class="board-archive"><summary>{esc(b["archive_label"])}</summary>'
+    out+=render_round_archive(copy,data,fill,site).replace('id="board"','id="round-record"',1)
+    return out+'</details></section>'
+
+
+def render_board_explanation(copy,data,fill,site):
+    b=copy['board']
+    out=f'<section class="sec" id="explanation"><h2>{esc(copy["board_explanation"]["heading"])}</h2>'
+    out+=paragraphs(b['explanation_paragraphs'],fill)
+    out+=f'<h3>{esc(b["rounds_label"])}</h3>'
+    for r in data['board']:
+        out+=f'<p><a href="conversation-board.html#round-{r["number"]}">{esc(b["round_label"])} {r["number"]}</a> · {r["completed"]} {esc(b["of"])} {r["expected"]} {esc(b["answered"])}. {esc(b["complete"] if r["complete"] else b["incomplete"])}</p>'
+    return out+'</section>'
 
 
 def render_thread(thread, records, copy):
     b=copy['board']
-    out=f'<section class="sec" id="thread"><p class="eyebrow">{esc(b["thread"])} {esc(thread)}</p><h2>{esc(b["statements"])}</h2><p>{esc(b["thread_note"])}</p><p class="note small">{esc(b["thread_context"])}</p><p><a href="what-happened.html">{esc(copy["what_happened"]["heading"])}</a> · <a href="board.html">{esc(b["thread_back"])}</a></p>'
-    from board_forum import conversation_file
-    out+=f'<p><a href="{conversation_file(thread)}">{esc(b["conversation"])}</a></p>'
+    out=f'<section class="sec" id="thread"><p class="eyebrow">{esc(b["thread"])} {esc(thread)}</p><h2>{esc(b["statements"])}</h2><p>{esc(b["thread_note"])}</p><p class="note small">{esc(b["thread_context"])}</p>'
     for n,unit in enumerate(records,1):
         ctx=unit['context']
         out+=f'<article class="board-message" id="u{n:02d}"><h3>u{n:02d}</h3><p class="small">{esc((ctx.get("first_seen") or {}).get("time", ""))}</p>'
         out+=f'<blockquote class="message"><div class="exact" data-quote="{esc(unit["id"])}">{esc(unit["body"])}</div></blockquote>'
         out+=f'<p class="record-id">{esc(b["page_label"])}: {esc(ctx.get("page", ""))}<br>{esc(b["saved_as"])}: {esc(ctx.get("introduced_by", ""))}<br>{esc(unit["id"])}</p></article>'
-    return out+f'<p><a href="board.html">{esc(b["thread_back"])}</a></p></section>'
+    return out+'</section>'

@@ -13,48 +13,51 @@ HERE = Path(__file__).resolve().parent
 
 def render_engine(copy, data=None, fill=None, site=None, *, embedded=False):
     e = copy['engine']
-    out = ['<div class="engine-visual">']
-    if embedded:
-        out.append(f'<p class="engine-launch"><a href="engine.html">{esc(e["open_label"])}</a> · <a href="images/engine.svg">{esc(e["image_label"])}</a></p>')
+    out = ['<div class="engine-visual">', f'<p class="engine-intro">{esc(e["definition"])}</p>']
     out.append(f'<nav class="engine-tabs" aria-label="{esc(e["nav_label"])}">')
-    for i, label in enumerate(e['panels'], 1):
-        out.append(f'<a href="#engine-{i}"><span aria-hidden="true">0{i}</span> {esc(label)}</a>')
+    out.extend(f'<a href="#{part["id"]}">{esc(part["label"])}</a>' for part in e['parts'])
     out.append('</nav>')
 
-    def panel(i, intro):
-        out.append(f'<section class="engine-panel" id="engine-{i}" aria-labelledby="engine-title-{i}">')
-        out.append(f'<p class="engine-label">0{i} / 04</p><h2 id="engine-title-{i}">{esc(e["panels"][i-1])}</h2><p class="engine-intro">{esc(intro)}</p>')
+    def part(index, legacy):
+        value = e['parts'][index]
+        out.append(f'<section class="engine-panel" id="{value["id"]}" aria-labelledby="part-title-{value["id"]}">')
+        out.append(f'<span id="engine-{legacy}"></span><span id="engine-title-{legacy}"></span>')
+        out.append(f'<h2 id="part-title-{value["id"]}">{esc(value["label"])}</h2><p class="engine-intro">{esc(value["intro"])}</p>')
 
-    panel(1, e['intro'])
-    out.append('<ol class="engine-path">')
-    for i, step in enumerate(e['steps'], 1):
-        out.append(f'<li class="engine-card"><span class="engine-number" aria-hidden="true">{i:02d}</span><h3>{esc(step["title"])}</h3><p>{esc(step["short"])}</p></li>')
-    out.append(f'</ol><div class="engine-ledger"><h3>{esc(e["ledger_title"])}</h3><p>{esc(e["ledger_text"])}</p></div>')
+    def cards(indices):
+        out.append('<ul class="engine-path">')
+        for index in indices:
+            step = e['steps'][index]
+            out.append(f'<li class="engine-card"><h3>{esc(step["title"])}</h3><p>{esc(step["short"])}</p></li>')
+        out.append('</ul>')
+
+    part(0, 4)
+    out.append(f'<h3>{esc(e["panels"][3])}</h3><p>{esc(e["theory_intro"])}</p><ol class="engine-points engine-theory-steps">')
+    out.extend(f'<li>{esc(v)}</li>' for v in e['theory_steps'])
+    out.append(f'</ol><p><a href="reading.html">{esc(e["theory_link_label"])}</a></p></section>')
+
+    part(1, 1)
+    cards(e['kernel_steps'])
+    out.append(f'<div class="engine-ledger"><h3>{esc(e["ledger_title"])}</h3><p>{esc(e["ledger_text"])}</p></div></section>')
+
+    part(2, 2)
+    cards(e['module_steps'])
+    out.append(f'<div class="engine-inventory"><section class="engine-built"><h3>{esc(e["built_label"])}</h3><dl>')
+    for item in e['built'][1:]:
+        out.append(f'<div><dt>{esc(item["title"])}</dt><dd>{esc(item["text"])}</dd></div>')
+    out.append(f'</dl></section><section class="engine-next"><h3>{esc(e["next_label"])}</h3><ul>')
+    out.extend(f'<li>{esc(v)}</li>' for v in e['next'])
+    out.append('</ul></section></div>')
     out.append(f'<details class="engine-details"><summary>{esc(e["detail_label"])}</summary><ol>')
     for step in e['steps']:
         out.append(f'<li><h3>{esc(step["title"])}</h3><p>{esc(step["detail"])}</p></li>')
     out.append(f'</ol><p class="engine-label engine-snapshot">{esc(e["metrics_label"])}</p><ul class="engine-metrics">')
     out.extend(f'<li>{esc(v)}</li>' for v in e['metrics'])
-    out.append('</ul></details></section>')
-
-    panel(2, e['inventory_intro'])
-    out.append(f'<div class="engine-inventory"><section class="engine-built"><h3>{esc(e["built_label"])}</h3><dl>')
-    for item in e['built']:
-        out.append(f'<div><dt>{esc(item["title"])}</dt><dd>{esc(item["text"])}</dd></div>')
-    out.append(f'</dl></section><section class="engine-next"><h3>{esc(e["next_label"])}</h3><ul>')
-    out.extend(f'<li>{esc(v)}</li>' for v in e['next'])
-    out.append('</ul></section></div></section>')
-
-    panel(3, e['safety_intro'])
-    out.append('<ul class="engine-points">')
+    out.append('</ul></details>')
+    out.append(f'<section id="engine-3"><h3 id="engine-title-3">{esc(e["panels"][2])}</h3><p>{esc(e["safety_intro"])}</p><ul class="engine-points">')
     out.extend(f'<li><a href="{esc(item["link"])}">{esc(item["text"])}</a></li>' for item in e['safety'])
-    out.append('</ul></section>')
-
-    panel(4, e['theory_intro'])
-    out.append('<ol class="engine-points engine-theory-steps">')
-    out.extend(f'<li>{esc(v)}</li>' for v in e['theory_steps'])
-    out.append(f'</ol><p><a href="reading.html#theory-overview">{esc(e["theory_link_label"])}</a></p></section>')
-    out.append(f'<nav class="engine-links"><a href="method.html">{esc(e["method_label"])}</a><a href="images/engine.svg">{esc(e["image_label"])}</a></nav></div>')
+    out.append('</ul></section></section>')
+    out.append(f'<p class="engine-links"><a href="images/engine.svg">{esc(e["image_label"])}</a></p></div>')
     return ''.join(out)
 
 
@@ -108,39 +111,44 @@ class Drawing:
 def render_svg(copy):
     e = copy['engine']
     d = Drawing()
-    y = d.text(e['heading'], 64, 40, 1672, 48, klass='heading') + 35
-    y = d.heading(1, e['panels'][0], y)
-    y = d.text(e['intro'], 64, y, 1672, 27)+28
-    y = d.cards(e['steps'], y, 5, numbered=True, size=22)
+    y = d.text(e['heading'], 64, 40, 1672, 48, klass='heading') + 25
+    y = d.text(e['definition'], 64, y, 1672, 27) + 35
+    p = e['parts'][0]
+    y = d.heading(1, p['label'], y)
+    y = d.text(p['intro'], 64, y, 1672, 27) + 20
+    y = d.text(e['panels'][3], 64, y, 1672, 30, klass='heading') + 15
+    for i, item in enumerate(e['theory_steps'], 1):
+        y = d.text(f'{i:02d}  '+item, 64, y, 1672, 27) + 12
+    y += 25
+
+    p = e['parts'][1]
+    y = d.heading(2, p['label'], y)
+    y = d.text(p['intro'], 64, y, 1672, 27) + 28
+    y = d.cards([e['steps'][i] for i in e['kernel_steps']], y, 4, size=22)
     d.line(64, y, 1736, y, red=True)
     y = d.text(e['ledger_title'], 64, y+16, 1672, 28, klass='card-title')
-    y = d.text(e['ledger_text'], 64, y+8, 1672, 23)+38
+    y = d.text(e['ledger_text'], 64, y+8, 1672, 23) + 38
 
-    y = d.heading(2, e['panels'][1], y)
-    y = d.text(e['inventory_intro'], 64, y, 1672, 27)+28
-    left = d.text(e['built_label'], 64, y, 786, 30, klass='card-title')+14
-    right = d.text(e['next_label'], 950, y, 786, 30, klass='red')+14
-    for item in e['built']:
-        left = d.text(item['title'], 64, left, 786, 24, klass='card-title')+3
-        left = d.text(item['text'], 64, left, 786, 22)+17
+    p = e['parts'][2]
+    y = d.heading(3, p['label'], y)
+    y = d.text(p['intro'], 64, y, 1672, 27) + 28
+    y = d.cards([e['steps'][i] for i in e['module_steps']], y, 3, size=22)
+    left = d.text(e['built_label'], 64, y, 786, 30, klass='card-title') + 14
+    right = d.text(e['next_label'], 950, y, 786, 30, klass='red') + 14
+    for item in e['built'][1:]:
+        left = d.text(item['title'], 64, left, 786, 24, klass='card-title') + 3
+        left = d.text(item['text'], 64, left, 786, 22) + 17
     for item in e['next']:
-        right = d.text('— '+item, 950, right, 786, 22)+15
+        right = d.text('— '+item, 950, right, 786, 22) + 15
     d.line(899, y, 899, max(left, right), dashed=True)
-    y = max(left, right)+28
-
-    y = d.heading(3, e['panels'][2], y)
-    y = d.text(e['safety_intro'], 64, y, 1672, 27)+24
+    y = max(left, right) + 28
+    y = d.text(e['panels'][2], 64, y, 1672, 30, klass='heading') + 15
+    y = d.text(e['safety_intro'], 64, y, 1672, 27) + 20
     for item in e['safety']:
-        y = d.text('— '+item['text'], 64, y, 1672, 29)+18
-    y += 25
-
-    y = d.heading(4, e['panels'][3], y)
-    y = d.text(e['theory_intro'], 64, y, 1672, 27)+24
-    for i, item in enumerate(e['theory_steps'],1):
-        y = d.text(f'{i:02d}  '+item, 64, y, 1672, 29)+18
+        y = d.text('— '+item['text'], 64, y, 1672, 27) + 12
     y += 25
     d.line(64, y, 1736, y, red=True)
-    y = d.text(e['svg_footer'], 64, y+18, 1672, 26, klass='heading')+45
+    y = d.text(e['svg_footer'], 64, y+18, 1672, 26, klass='heading') + 45
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="{y}" viewBox="0 0 1800 {y}" role="img" aria-labelledby="title description">\n'
             f'<title id="title">{esc(e["svg_title"])}</title><desc id="description">{esc(e["svg_description"])}</desc>\n'
             '<style>svg{background:#f4f0e7}text{fill:#25231f;font-family:"Courier New",Courier,monospace}.heading{font-family:Georgia,"Times New Roman",serif}.card-title{font-weight:bold}.red{fill:#b52d25}.rule{stroke:#d7d0c3;stroke-width:2}.red-line{stroke:#b52d25;stroke-width:2}</style>\n'

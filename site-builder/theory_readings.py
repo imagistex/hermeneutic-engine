@@ -148,7 +148,9 @@ def render_overview(copy, data, only_framework=None):
             continue
         draft_id = {'foucauldian': 'foucault', 'lacanian': 'lacan'}[framework]
         legacy_id = f' id="memo-{draft_id}"' if not only_framework else ''
-        out.append(f'<section id="framework-{esc(framework)}"><h4{legacy_id}><a href="{framework_file(framework)}">{esc(labels["frameworks"][framework])}</a></h4>')
+        out.append(f'<section id="framework-{esc(framework)}">')
+        if not only_framework:
+            out.append(f'<h4{legacy_id}><a href="{framework_file(framework)}">{esc(labels["frameworks"][framework])}</a></h4>')
         for family in labels['families']:
             matches = [item for item in group['readings'] if item['reader']['family'] == family]
             if not matches:
@@ -239,7 +241,7 @@ def render_readings(framework, copy, data):
             out.append(exact(part['text'], 'prompt:' + part['sha256'], 'pre'))
         if not item['apparatus']['stack']:
             out.append(f'<p>{esc(labels["no_letter"])}</p>')
-        out.append(f'</details><p class="record-id">{esc(memo["id"])}</p><p class="small"><a href="reading.html#theory-overview">{esc(labels["back_comparison"])}</a></p></article>')
+        out.append(f'</details><p class="record-id">{esc(memo["id"])}</p></article>')
     return ''.join(out) + '</section>'
 
 
@@ -247,43 +249,35 @@ def render_theory_pages(copy, data, fill):
     """Return standalone pages without a document shell; no new build dependencies."""
     from notebook_sections import render_theory_draft
     labels=copy['reading']['ledger']; pages={}
-    def back():
-        return f'<p class="theory-back"><a href="reading.html">{esc(labels["back_readings"])}</a></p>'
     drafts={m['id']:m for m in copy['reading']['memos']}
     engine=drafts['engine']
-    pages['reading-engine.html']=(engine['title'], '<section class="sec theory theory-single">'+back()+render_theory_draft(engine,copy,fill)+back()+'</section>')
+    pages['reading-engine.html']=(engine['title'], '<section class="sec theory theory-single">'+render_theory_draft(engine,copy,fill)+'</section>')
     readings=[(framework,item) for framework,group in data['theory'].items() for item in group['readings']]
     for framework,group in data['theory'].items():
         title=labels['frameworks'][framework]
         draft=drafts[{'foucauldian':'foucault','lacanian':'lacan'}[framework]]
-        body=f'<section class="sec theory theory-framework-page">{back()}<h2>{esc(title)}</h2><p class="framework-intro">{esc(labels["framework_intros"][framework])}</p>'
+        body=f'<section class="sec theory theory-framework-page"><h2>{esc(title)}</h2><p class="framework-intro">{esc(labels["framework_intros"][framework])}</p>'
+        body+=f'<nav class="section-tabs"><a href="#synthesis">{esc(labels["synthesis_label"])}</a><a href="#theory-overview">{esc(labels["framework_readings_heading"])}</a></nav>'
+        body+=f'<section id="synthesis"><h3>{esc(labels["synthesis_label"])}</h3>{render_theory_draft(draft,copy,fill)}</section>'
         body+=render_overview(copy,data,framework)
         for attempt in group['attempts']:
             if attempt['status']!='ok' or not attempt['published']:
                 state=labels['failed_call'] if attempt['status']!='ok' else labels['empty_answer']
                 body+=f'<p class="theory-call-status">{esc(attribution(attempt,labels))}: {esc(state)}</p>'
-        body+=f'<details class="theory-draft"><summary>{esc(labels["draft_label"])}</summary>{render_theory_draft(draft,copy,fill)}</details>'+back()+'</section>'
+        body+='</section>'
         pages[framework_file(framework)]=(title,body)
     for n,(framework,item) in enumerate(readings):
         title=attribution(item,labels)+' · '+labels['frameworks'][framework]
         one={**data, 'theory': {framework: {'readings':[item], 'attempts':[]}}}
-        body=f'<section class="sec theory theory-single">{back()}<p><a href="{framework_file(framework)}">{esc(labels["framework_link"])}</a></p>'
+        body='<section class="sec theory theory-single">'
         body+=render_readings(framework,copy,one)
-        body+='<nav class="theory-pagination">'
-        if n:
-            prev=readings[n-1][1]
-            body+=f'<a rel="prev" href="{reading_file(prev)}">{esc(labels["previous"])}</a>'
-        body+=f'<a href="reading.html">{esc(labels["back_readings"])}</a>'
-        if n+1<len(readings):
-            nxt=readings[n+1][1]
-            body+=f'<a rel="next" href="{reading_file(nxt)}">{esc(labels["next"])}</a>'
-        pages[reading_file(item)]=(title,body+'</nav></section>')
+        pages[reading_file(item)]=(title,body+'</section>')
     return pages
 
 
 def render_sources(copy, data):
     labels = copy['reading']['ledger']
-    out = [f'<section class="sec"><h2>{esc(labels["sources_heading"])}</h2><p><a href="reading.html">{esc(labels["back_readings"])}</a></p>']
+    out = [f'<section class="sec"><h2>{esc(labels["sources_heading"])}</h2>']
     for ref, source in data['theory_sources'].items():
         out.append(f'<article class="board-message" id="{rid(ref)}"><h3 class="record-id">{esc(ref)}</h3>')
         out.append(exact(source['body'], ref, 'blockquote'))

@@ -48,7 +48,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from notebook_sections import enrich, render_theory, render_method, render_culture, render_board, render_apparatus, render_thread, thread_file
+from notebook_sections import enrich, render_theory, render_method, render_culture, render_board, render_apparatus, render_thread, thread_file, render_doors
 from engine_visual import render_engine, render_svg
 
 from hermeneutic_engine.store import Project
@@ -789,7 +789,7 @@ def chart_present_absent(chart: dict, data: dict) -> str:
     absent = "".join(
         f'<li><span class="pa-w">{esc(name)}</span><span></span><span class="pa-n zero">0</span></li>'
         for name in data["metrics"]["absent"] if name in chart["absent_probe"])
-    return f'<ul class="pa">{present}</ul><ul class="pa pa-absent">{absent}</ul>'
+    return f'<ul class="pa">{present}</ul>' + (f'<ul class="pa pa-absent">{absent}</ul>' if absent else '')
 
 
 NAME_PART_LABELS = (("date", "carries a date code"), ("role", "carries a role word"),
@@ -1260,14 +1260,14 @@ def render_leaf(index: int, copy: dict, data: dict, fill, site: dict) -> str:
     sentence, total = data["sentences"][index], len(data["sentences"])
     context = ""
     if copy.get("leaf_context"):
-        more = (f' <a href="{esc(site["context"]["file"])}">{esc(site["context"]["title"])}</a>'
+        more = (f' <a href="{esc(site["context"]["file"])}">{esc(next(p["label"] for p in copy["navigation"]["sections"] if p["file"] == site["context"]["file"]))}</a>'
                 if site["context"] else "")
         context = f'<p class="ctx">{esc(fill(copy["leaf_context"]))}{more}</p>'
     again = ""
     if total > 1:
         again = (f'<p class="again"><a class="another" href="{esc(site["leaves"][(index + 1) % total])}">'
                  f'{esc(site["another"])}</a><span class="s-place">{index + 1} / {total}</span></p>')
-    contents = "".join(f'<li><a href="{esc(page["file"])}">{esc(page["title"])}</a></li>' for page in site["pages"])
+    contents = "".join(f'<li><a href="{esc(page["file"])}">{esc(page["label"])}</a></li>' for page in copy['navigation']['sections'])
     contents = f'<nav class="sec contents" id="contents"><p class="eyebrow">{esc(copy["nav"]["section"])}</p><ol>{contents}</ol></nav>' if contents else ""
     return (f'<main id="main"><section class="sec opening" id="sentence" aria-label="A sentence from the wiki">'
             f'<div class="s is-current" data-unit="{esc(sentence["unit"])}"><div class="has-mn">'
@@ -1348,8 +1348,8 @@ def render_fastest(labels: dict, data: dict, fill) -> str:
         f'<td><time datetime="{esc(item["first"])}">{day_label(item["first"][:10])}, {clock(item["first"])}</time></td>'
         f'<td>{within(item)}</td><td>{num(item["signatures_total"])}</td></tr>' for item in data["fastest"])
     note = f'<p class="fast-note small">{esc(fill(labels["note"]))}</p>' if labels.get("note") else ""
-    return (f'<div class="fast"><h3 class="fam-h">{esc(fill(labels["heading"]))}</h3>'
-            f'<div class="fig-scroll"><table><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>{note}</div>')
+    return (f'<details class="fast"><summary>{esc(fill(labels["heading"]))}</summary>'
+            f'<div class="fig-scroll"><table><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>{note}</details>')
 
 
 def render_words(block: dict, data: dict, fill) -> str:
@@ -1444,7 +1444,7 @@ def render_colophon(block: dict, data: dict, fill, status: str | None = None) ->
             lines.append(f'<p>{esc(fill(head))}<span class="digest">{esc(data["metrics"]["ledger_digest"])}</span>{esc(fill(tail))}</p>')
         else:
             lines.append(f"<p>{esc(fill(line))}</p>")
-    return f'<footer class="sec colophon" id="colophon">{"".join(lines)}</footer>'
+    return f'<footer class="sec colophon" id="colophon"><details><summary>{esc(block["label"])}</summary>{"".join(lines)}</details></footer>'
 
 
 # ---- blocks, and the pages made of them --------------------------------------------
@@ -1479,6 +1479,15 @@ def render_prose(name: str, block: dict, fill) -> str:
 
 
 def render_block(name: str, copy: dict, data: dict, fill, site: dict | None) -> str:
+    if name == 'board_explanation':
+        from notebook_sections import render_board_explanation
+        return render_board_explanation(copy, data, fill, site)
+    if name == 'board_threads':
+        from board_forum import render_index
+        return render_index(copy, data, fill)
+    if name in ('insights', 'methods'):
+        section = next(s for s in copy['navigation']['sections'] if s['file'] == name + '.html')
+        return f'<section class="sec landing" id="{name}"><h2>{esc(copy[name]["heading"])}</h2>{render_doors(section["children"])}</section>'
     if name in BLOCKS:
         if name not in copy:
             raise BuildError(f"the copy has nothing under {name!r}, which a page is to show")
@@ -1582,9 +1591,64 @@ def plan_site(copy: dict, data: dict, fill) -> dict:
 
 def notebook_nav(copy, site, active=None):
     label = copy["nav"]
-    items = f'<li><a href="index.html">{esc(label["home"])}</a></li>'
-    items += "".join(f'<li><a href="{esc(p["file"])}"' + (' aria-current="page"' if p['id'] == active else '') + f'>{esc(p["title"])}</a></li>' for p in site['pages'])
+    active_file = next((p['file'] for p in site['pages'] if p['id'] == active), active or FRONT)
+    items = "".join(f'<li><a href="{esc(p["file"])}"' + (' aria-current="page"' if p['file'] == active_file else '') + f'>{esc(p["label"])}</a></li>' for p in copy['navigation']['sections'])
     return f'<a class="skip-link" href="#main">{esc(label["skip"])}</a><details class="notebook-nav"><summary>{esc(label["contents"])}</summary><nav aria-label="{esc(label["section"])}"><ol>{items}</ol></nav></details>'
+
+
+def navigation_tree(copy, data, site):
+    """One parent per page; dynamic evidence pages retain their recorded names."""
+    from board_forum import conversation_file
+    from theory_readings import reading_file, framework_file
+    tree = {}
+    def add(entry, parent=None):
+        tree[entry['file']] = {**entry, 'parent': parent}
+        for child in entry.get('children', []):
+            add(child, entry['file'])
+    for section in copy['navigation']['sections']:
+        add(section)
+    for n, name in enumerate(site['leaves'][1:], 2):
+        add({'file': name, 'label': f'{copy["navigation"]["sentence_label"]} {n}'}, FRONT)
+    for framework, group in data['theory'].items():
+        for item in group['readings']:
+            reader = item['reader']
+            label = copy['reading']['ledger']['families'].get(reader['family'], reader.get('model') or reader['family'])
+            add({'file': reading_file(item), 'label': label}, framework_file(framework))
+    if data.get('theory_sources'):
+        add({'file': 'theory-sources.html', 'label': copy['navigation']['sources_label'], 'auxiliary': True}, 'reading.html')
+    board_parent = 'board-threads.html' if 'board-threads.html' in tree else 'board.html'
+    for thread in data['conversations']:
+        label = copy['board']['whole'] if thread == 'board' else f'{copy["board"]["thread"]} {thread}'
+        add({'file': conversation_file(thread), 'label': label}, board_parent)
+        if thread in data['board_threads']:
+            add({'file': thread_file(thread), 'label': copy['navigation']['statements_label']}, conversation_file(thread))
+    return tree
+
+
+def page_trail(name, tree, copy):
+    here = tree[name]
+    if here['parent'] is None:
+        return ''
+    chain = [here]
+    while chain[0]['parent']:
+        chain.insert(0, tree[chain[0]['parent']])
+    links = ' <span aria-hidden="true">/</span> '.join(
+        f'<a href="{esc(p["file"])}"' + (' aria-current="page"' if p['file'] == name else '') + f'>{esc(p["label"])}</a>' for p in chain)
+    return f'<nav class="page-trail" aria-label="{esc(copy["navigation"]["trail_label"])}">{links}</nav>'
+
+
+def sibling_links(name, tree, copy):
+    here = tree[name]
+    if here.get('auxiliary') or here['parent'] is None:
+        return ''
+    siblings = [p for p in tree.values() if p['parent'] == here['parent'] and not p.get('auxiliary')]
+    index = next(i for i, p in enumerate(siblings) if p['file'] == name)
+    links = []
+    for offset, rel, label in ((-1, 'prev', 'previous'), (1, 'next', 'next')):
+        if 0 <= index + offset < len(siblings):
+            p = siblings[index + offset]
+            links.append(f'<a rel="{rel}" href="{esc(p["file"])}"><span>{esc(copy["nav"][label])}</span> {esc(p["label"])}</a>')
+    return f'<nav class="sibling-nav" aria-label="{esc(copy["navigation"]["siblings_label"])}">' + ''.join(links) + '</nav>' if links else ''
 
 
 def render_turn(index: int, site: dict) -> str:
@@ -1612,15 +1676,15 @@ def render_site(copy: dict, data: dict) -> dict:
     files = {}
     for index, name in enumerate(site["leaves"]):
         own = title if index == 0 else f"{title} · {index + 1} / {len(site['leaves'])}"
-        body = notebook_nav(copy, site) + masthead(copy, fill, home=FRONT if index else None) + render_leaf(index, copy, data, fill, site)
+        body = notebook_nav(copy, site, name) + masthead(copy, fill, home=FRONT if index else None) + render_leaf(index, copy, data, fill, site)
         files[name] = document(description, head_tags(own, style), sheet(body))
     foot_everywhere = copy.get("colophon_at_foot", True) and copy.get("colophon")
     for index, page in enumerate(site["pages"]):
         blocks = "".join(render_block(name, copy, data, fill, site) for name in page["blocks"])
         head = f'<div class="sec page-head"><h2 class="page-h">{esc(page["title"])}</h2></div>' if page["head"] else ""
         foot = render_block("colophon", copy, data, fill, site) if foot_everywhere and "colophon" not in page["blocks"] else ""
-        body = notebook_nav(copy, site, page["id"]) + masthead(copy, fill, home=FRONT) + f'<main id="main">{head}{blocks}</main>' + render_turn(index, site) + foot
-        scripts = '<script src="site.js"></script>\n' if any(name in page["blocks"] for name in ("words", "board")) else ""
+        body = notebook_nav(copy, site, page["id"]) + masthead(copy, fill, home=FRONT) + f'<main id="main">{head}{blocks}</main>' + foot
+        scripts = '<script src="site.js"></script>\n' if 'words' in page["blocks"] else ""
         files[page["file"]] = document(description, head_tags(f"{page['title']} · {title}", style), sheet(body), scripts)
         if page['id'] == 'engine':
             e = copy['engine']
@@ -1629,25 +1693,31 @@ def render_site(copy: dict, data: dict) -> dict:
             body += f'<main id="main">{blocks}</main></div>'
             files[page['file']] = document(e['intro'], head_tags(e['heading'], style), body)
     for thread, records in data['board_threads'].items():
-        body = notebook_nav(copy, site, 'board') + masthead(copy, fill, home=FRONT)
+        body = notebook_nav(copy, site, thread_file(thread)) + masthead(copy, fill, home=FRONT)
         body += f'<main id="main">{render_thread(thread, records, copy)}</main>'
         body += render_block('colophon', copy, data, fill, site)
         files[thread_file(thread)] = document(description, head_tags(f'{copy["board"]["thread"]} {thread} · {title}', style), sheet(body))
     from board_forum import render_conversation, conversation_file
     for thread, item in data['conversations'].items():
-        body = notebook_nav(copy, site, 'board') + masthead(copy, fill, home=FRONT)
+        body = notebook_nav(copy, site, conversation_file(thread)) + masthead(copy, fill, home=FRONT)
         body += f'<main id="main">{render_conversation(thread, item, copy, data)}</main>'
         heading = copy['board']['whole'] if thread == 'board' else f'{copy["board"]["thread"]} {thread}'
         files[conversation_file(thread)] = document(description, head_tags(f'{heading} · {title}', style), sheet(body))
     from theory_readings import render_sources, render_theory_pages
     for name, (heading, content) in render_theory_pages(copy, data, fill).items():
-        body = notebook_nav(copy, site, 'reading') + masthead(copy, fill, home=FRONT)
+        body = notebook_nav(copy, site, name) + masthead(copy, fill, home=FRONT)
         body += f'<main id="main">{content}</main>'
         files[name] = document(description, head_tags(heading, style), sheet(body))
     if data.get('theory_sources'):
-        body = notebook_nav(copy, site, 'reading') + masthead(copy, fill, home=FRONT)
+        body = notebook_nav(copy, site, 'theory-sources.html') + masthead(copy, fill, home=FRONT)
         body += f'<main id="main">{render_sources(copy, data)}</main>'
         files['theory-sources.html'] = document(description, head_tags(copy['reading']['ledger']['sources_heading'], style), sheet(body))
+    tree = navigation_tree(copy, data, site)
+    for name, page in list(files.items()):
+        if name.endswith('.html'):
+            if name not in tree:
+                raise BuildError(f'Page has no place in the navigation: {name}')
+            files[name] = page.replace('<main id="main">', '<main id="main">' + page_trail(name, tree, copy), 1).replace('</main>', '</main>' + sibling_links(name, tree, copy), 1)
     files["style.css"] = CSS.lstrip("\n")
     files["site.js"] = script(False).lstrip("\n") + BOARD_JS
     # The checked-in SVG and HTML derive from the same authoritative copy.

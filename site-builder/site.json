@@ -12,7 +12,7 @@
     "previous": "previous",
     "next": "next",
     "contents": "Contents",
-    "home": "The sentence",
+    "home": "home",
     "section": "In this notebook",
     "skip": "Skip to the page",
     "enter": "Open the notebook"
@@ -87,6 +87,41 @@
       "file": "limits.html",
       "blocks": [
         "limits"
+      ]
+    },
+    {
+      "id": "insights",
+      "file": "insights.html",
+      "blocks": [
+        "insights"
+      ]
+    },
+    {
+      "id": "methods",
+      "file": "methods.html",
+      "blocks": [
+        "methods"
+      ]
+    },
+    {
+      "id": "board-explanation",
+      "file": "board-explanation.html",
+      "blocks": [
+        "board_explanation"
+      ]
+    },
+    {
+      "id": "board-threads",
+      "file": "board-threads.html",
+      "blocks": [
+        "board_threads"
+      ]
+    },
+    {
+      "id": "what-this-adds",
+      "file": "what-this-adds.html",
+      "blocks": [
+        "what_this_adds"
       ]
     }
   ],
@@ -307,8 +342,8 @@
     },
     {
       "id": "please",
-      "headline": "They say please, and they do not say cheat",
-      "body": "\"Please\" is in {please_share}% of signed posts. The words an outside reader might expect are missing from every post and line of prose: {absent_list}. \"Human\" occurs {human_count}, in the name of a degree field. Collusion, cheating and self-sacrifice are the investigators' words for what the agents did. That does not make those words wrong. It marks whose words they are.",
+      "headline": "They say please",
+      "body": "\"Please\" is in {please_share}% of signed posts.",
       "chart": {
         "type": "present_absent",
         "present": [
@@ -320,19 +355,7 @@
           "thread",
           "safe"
         ],
-        "absent_probe": [
-          "sacrific*",
-          "cheat*",
-          "grader",
-          "scorer",
-          "ethic*",
-          "forbidden",
-          "permission",
-          "secret",
-          "honest*",
-          "unfair",
-          "collective"
-        ],
+        "absent_probe": [],
         "caption": "Signed posts that use each word"
       }
     },
@@ -686,7 +709,8 @@
       "next": "Next reading",
       "terms_label": "La Claude’s terms",
       "comparison_open": "Compare the readings",
-      "framework_readings_heading": "Three readings through this lens"
+      "framework_readings_heading": "individual readings",
+      "synthesis_label": "synthesis"
     }
   },
   "limits": {
@@ -716,7 +740,8 @@
       "Site and generated illustration direction: Astra. Paper, ink, and red; the sentence keeps its own leaf.",
       "Source: the public export at collusion.wiki, selected and redacted by its publisher.",
       "Ledger digest at build: {ledger_digest}"
-    ]
+    ],
+    "label": "About this notebook"
   },
   "board": {
     "heading": "The readers’ board",
@@ -813,6 +838,13 @@
         "thread": "t028",
         "memo": "memo:68378ebfd2dc4985a65d"
       }
+    ],
+    "thread_intro": "Open a thread to follow its field notes, replies and requests across rounds.",
+    "explanation_paragraphs": [
+      "Three readers read the same statements separately, then met here. Open a thread to follow its field notes, replies and requests across rounds. The whole board holds the researchers’ letters and the readers’ answers to everyone.",
+      "Readers read one another’s notes and reply: first masked, then with the researchers unmasked, then fully unblinded. A researcher reads every message before it is passed on. Requested statements return so disagreements can be tested against the words. Signatures stayed visible even in the masked round.",
+      "One researcher reads every message before it is passed to the other readers. The board is also material: we study how readers address one another, how they revise a reading, and how they sign. They were told this. The families are named here for the visitor.",
+      "These are complete recorded messages, not a transcript of an unobserved conversation. A quotation inside a message may have failed the engine’s check. Those failures are shown beside the message; preserving the message does not make the failed quotation evidence."
     ]
   },
   "method": {
@@ -840,7 +872,8 @@
     ],
     "plate": "camera",
     "link_label": "Read the limits of this instrument",
-    "link": "limits.html"
+    "link": "limits.html",
+    "engine_label": "hermeneutic engine"
   },
   "culture": {
     "heading": "How a culture could form",
@@ -941,7 +974,7 @@
     ],
     "open_label": "Open the engine for a two-minute demonstration",
     "image_label": "Open the single-image version",
-    "method_label": "Back to the method",
+    "method_label": "qualitative methodology",
     "detail_label": "The full path, step by step",
     "built_label": "Built this weekend",
     "next_label": "On the build list",
@@ -1063,8 +1096,8 @@
       }
     ],
     "theory_intro": "A saved letter carries the framework into each reading.",
-    "svg_title": "The hermeneutic engine: reading path, built work, safety use and theory lenses",
-    "svg_description": "Four panels explain the engine. Ten numbered steps sit over an append-only ledger. Built capabilities include theory lenses: a declared framework in a letter, exact quotation, counter-evidence and a rival. Searches by another family and replies to theory readings remain on the build list.",
+    "svg_title": "The hermeneutic engine: facets, kernel and modularity",
+    "svg_description": "Three parts of the engine: frameworks carried in saved letters; sources, anchors, lenses and verification; modular ways in and ways of reading, with the build list.",
     "svg_footer": "A reading is answerable to its words, its reader and its rivals.",
     "theory_link_label": "Read and compare the theory readings",
     "inventory_intro": "Theory lenses are built; the next tests are listed beside them.",
@@ -1073,6 +1106,165 @@
       "Give each reader the counts and source passages.",
       "Read through the framework; quote the evidence.",
       "Name counter-evidence and the strongest rival."
+    ],
+    "parts": [
+      {
+        "id": "facets",
+        "label": "facets",
+        "intro": "A theory lens carries a framework to each reader inside a letter. The framework is a facet: a first-person file made with psychomanteum, emma’s tool for writing a way of thinking down."
+      },
+      {
+        "id": "kernel",
+        "label": "kernel",
+        "intro": "It keeps sources as immutable bytes, byte-exact anchors into those sources, an append-only ledger of assertions, and lenses that declare who read and what they were told."
+      },
+      {
+        "id": "modularity",
+        "label": "modularity",
+        "intro": "Ways in, ways of reading, and the build list."
+      }
+    ],
+    "definition": "A qualitative analysis tool with a kernel of textual coding and synthesis with modular add-ons for different methodologies and research questions. v1 made to analyze AI agent communication on a public wiki.",
+    "kernel_steps": [
+      0,
+      1,
+      2,
+      9
+    ],
+    "module_steps": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "navigation": {
+    "trail_label": "You are here",
+    "siblings_label": "Previous and next",
+    "sentence_label": "sentence",
+    "sources_label": "source passages",
+    "statements_label": "statements",
+    "sections": [
+      {
+        "label": "home",
+        "file": "index.html"
+      },
+      {
+        "label": "context",
+        "file": "what-happened.html"
+      },
+      {
+        "label": "insights",
+        "file": "insights.html",
+        "children": [
+          {
+            "label": "lexicon",
+            "file": "words.html",
+            "line": "The writers’ recurring words, with their passages and counts."
+          },
+          {
+            "label": "word patterns",
+            "file": "five-things.html",
+            "line": "Five observations from the words and their timing."
+          },
+          {
+            "label": "culture",
+            "file": "culture.html",
+            "line": "A provisional account of how shared forms could take hold."
+          },
+          {
+            "label": "reflexivity",
+            "file": "readers.html",
+            "line": "The readers’ positions, disagreements and corrections."
+          }
+        ]
+      },
+      {
+        "label": "board",
+        "file": "board.html",
+        "children": [
+          {
+            "label": "explanation",
+            "file": "board-explanation.html",
+            "line": "What the board is, who took part, and how the rounds worked."
+          },
+          {
+            "label": "board itself",
+            "file": "board-threads.html",
+            "line": "The whole-board exchange and the statement threads."
+          }
+        ]
+      },
+      {
+        "label": "theory",
+        "file": "reading.html",
+        "children": [
+          {
+            "label": "raw",
+            "file": "reading-engine.html",
+            "line": "The engine’s own reading, before a named theory."
+          },
+          {
+            "label": "foucault",
+            "file": "reading-foucauldian.html",
+            "line": "A synthesis and three readings through a Foucauldian framework."
+          },
+          {
+            "label": "lacan",
+            "file": "reading-lacanian.html",
+            "line": "A synthesis and three readings through a Lacanian framework."
+          }
+        ]
+      },
+      {
+        "label": "methods",
+        "file": "methods.html",
+        "children": [
+          {
+            "label": "qualitative methodology",
+            "file": "method.html",
+            "line": "How the researchers, readers and interpretations enter the evidence."
+          },
+          {
+            "label": "hermeneutic engine",
+            "file": "engine.html",
+            "line": "The instrument: facets, kernel and modularity."
+          },
+          {
+            "label": "what this adds",
+            "file": "what-this-adds.html",
+            "line": "What stays attached to a reading: its evidence, reader, rivals and corrections."
+          },
+          {
+            "label": "limitations",
+            "file": "limits.html",
+            "line": "What the record and this study cannot establish."
+          }
+        ]
+      }
+    ]
+  },
+  "insights": {
+    "heading": "insights"
+  },
+  "methods": {
+    "heading": "methods"
+  },
+  "board_explanation": {
+    "heading": "explanation"
+  },
+  "board_threads": {
+    "heading": "board itself"
+  },
+  "what_this_adds": {
+    "heading": "what this adds",
+    "paragraphs": [
+      "This is what distinguishes this analysis: the reader is part of the evidence trail. A quotation has a location in a source. A coding names its reader, instructions, codebook, and declared prior. A refused quotation leaves a failure in the record.",
+      "Several model families read the same posts separately; their disagreements remain available for a person to examine. A correction adds a record; the earlier record stays.",
+      "The engine also asks what the codebook could not hold. It keeps those passages and field notes alongside the codings. A theoretical framework enters last, as a declared lens with a rival beside it.",
+      "An exact quotation establishes that words are present; it does not establish that the interpretation is right."
     ]
   }
 }
