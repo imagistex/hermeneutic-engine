@@ -139,37 +139,34 @@ def plate(copy, key):
             f'<figcaption>{esc(p["caption"])} <a href="images/prompts/{esc(p["prompt"])}">{esc(p["prompt_label"])}</a></figcaption></figure>')
 
 def render_theory(copy,data,fill,site):
-    from theory_readings import render_overview, render_comparison, render_readings
-    b=copy['reading']; out=[f'<section class="sec theory" id="reading"><h2>{esc(b["heading"])}</h2><p>{esc(b["intro"])}</p>']
-    labels = b['ledger']
+    from theory_readings import render_overview, render_comparison
+    b=copy['reading']; labels=b['ledger']
+    out=[f'<section class="sec theory" id="reading"><h2>{esc(b["heading"])}</h2><p>{esc(b["intro"])}</p>']
+    out.append(f'<p class="theory-start" id="memo-engine"><a href="reading-engine.html#memo-engine">{esc(labels["engine_link"])}</a></p>')
     out.append(f'<nav class="forum-nav"><a href="#theory-overview">{esc(labels["overview_heading"])}</a><a href="#theory-comparison">{esc(labels["comparison_heading"])}</a></nav>')
-    for i,m in enumerate(b['memos'],1):
-        if i == 2:
-            out.append(render_overview(copy, data))
-            out.append(render_comparison(copy, data))
-        if m['id'] in ('foucault', 'lacan'):
-            framework = {'foucault': 'foucauldian', 'lacan': 'lacanian'}[m['id']]
-            out.append(render_readings(framework, copy, data))
-            out.append(f'<details class="theory-draft"><summary>{esc(b["ledger"]["draft_label"])}</summary>')
-        if m.get('status') != 'held' and (not m.get('paragraphs') or not m.get('rival')):
-            raise ValueError(f'Theory memo {m["id"]} needs both its reading and its rival before publication')
-        out.append(f'<article class="theory-memo" id="memo-{esc(m["id"])}"><p class="eyebrow">{i:02d} / {esc(m["subtitle"])}</p><h3>{esc(m["title"])}</h3>')
-        if m.get('status') == 'draft':
-            out.append(f'<p class="draft-notice">{esc(b["draft_notice"])}</p>')
-        out.append('<div class="paired">')
-        for key,label in [('paragraphs','claim_label'),('rival','rival_label')]:
-            body=memo_paragraphs(m.get(key,[]),m,fill) if m.get('status')!='held' else f'<p class="held">{esc(m.get("held_reason") or b["held"])}</p>'
-            out.append(f'<section><h4>{esc(b[label])}</h4>{body}</section>')
-        out.append(f'</div><details><summary>{esc(b["evidence_label"])}</summary><p>{esc(b["evidence_note"])}</p>')
-        for e in m.get('evidence',[]) if m.get('status')!='held' else []:
-            label=b.get(e.get('position','')+'_label','')
-            if label: out.append(f'<p class="eyebrow">{esc(label)}</p>')
-            out.append(f'<blockquote><p class="exact" data-quote="{esc(e["unit"])}">{esc(e["quote"])}</p></blockquote><p class="record-id">{esc(e["unit"])}</p>')
-            if e.get('note'): out.append(f'<p>{esc(fill(e["note"]))}</p>')
-        out.append('</details></article>')
-        if m['id'] in ('foucault', 'lacan'):
-            out.append('</details>')
+    out.extend([render_overview(copy,data), render_comparison(copy,data)])
     out.append(f'<p class="small">{esc(b["note"])}</p></section>')
+    return ''.join(out)
+
+
+def render_theory_draft(m, copy, fill):
+    b=copy['reading']; out=[]; i=b['memos'].index(m)+1
+    if m.get('status') != 'held' and (not m.get('paragraphs') or not m.get('rival')):
+        raise ValueError(f'Theory memo {m["id"]} needs both its reading and its rival before publication')
+    out.append(f'<article class="theory-memo" id="memo-{esc(m["id"])}"><p class="eyebrow">{i:02d} / {esc(m["subtitle"])}</p><h3>{esc(m["title"])}</h3>')
+    if m.get('status') == 'draft':
+        out.append(f'<p class="draft-notice">{esc(b["draft_notice"])}</p>')
+    out.append('<div class="paired">')
+    for key,label in [('paragraphs','claim_label'),('rival','rival_label')]:
+        body=memo_paragraphs(m.get(key,[]),m,fill) if m.get('status')!='held' else f'<p class="held">{esc(m.get("held_reason") or b["held"])}</p>'
+        out.append(f'<section><h4>{esc(b[label])}</h4>{body}</section>')
+    out.append(f'</div><details><summary>{esc(b["evidence_label"])}</summary><p>{esc(b["evidence_note"])}</p>')
+    for e in m.get('evidence',[]) if m.get('status')!='held' else []:
+        label=b.get(e.get('position','')+'_label','')
+        if label: out.append(f'<p class="eyebrow">{esc(label)}</p>')
+        out.append(f'<blockquote><p class="exact" data-quote="{esc(e["unit"])}">{esc(e["quote"])}</p></blockquote><p class="record-id">{esc(e["unit"])}</p>')
+        if e.get('note'): out.append(f'<p>{esc(fill(e["note"]))}</p>')
+    out.append('</details></article>')
     return ''.join(out)
 
 

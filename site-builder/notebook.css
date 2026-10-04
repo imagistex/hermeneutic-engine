@@ -300,3 +300,40 @@ pre.exact { font-family: var(--typed); font-size: .7em; max-height: 30rem; overf
  .theory-gloss { flex-basis: 100% }
  .theory-card { padding: .7rem }
 }
+
+/* Separate readings: a large plain opening, then one comfortable prose column. */
+.theory-single { max-width: 42rem; margin-inline: auto }
+.theory-single .theory-framework { margin-top: 1.5rem; border-top: 0; padding-top: 0 }
+.theory-single .theory-plain, .framework-intro { font-size: clamp(1.3rem, 1.05rem + .75vw, 1.65rem); line-height: 1.5 }
+.theory-single .theory-plain { margin-block: 1.2rem 2rem }
+.theory-single .theory-gloss { margin-block: 2rem; background: var(--wash); border: 0; border-left: 2px solid var(--red); padding: 1.2rem 1.4rem }
+.theory .theory-body { white-space: normal; max-width: 36em; line-height: 1.75; margin-block: 1.2rem 2.5rem }
+.theory-body > p { white-space: pre-wrap; margin: 0 0 1.35em }
+.theory-single .theory-evidence { background: var(--wash); padding: 1rem 1.3rem; margin-block: 1.5rem 2rem }
+.theory-single .theory-tests { display: block }
+.theory-single .theory-tests > section { padding-block: .75rem }
+.theory-single .paired { display: block }
+.theory-single .paired section { padding: 0; min-height: 0 }
+.theory-single .paired section + section { border-left: 0; border-top: 1px solid var(--rule); padding-top: 1rem }
+.theory-pagination { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--ink); padding-top: 1.3rem; font-size: .85em }
+.theory-start { font-size: 1.12em; padding-block: .6rem; border-block: 1px solid var(--red) }
+.theory-card-rival { font-size: .88em; margin-block: .5rem .8rem; border-top: 1px solid var(--rule) }
+.theory-passage > summary { font-size: 1rem; padding-block: .6rem }
+.theory-framework-page .theory-framework-grid { display: block; max-width: 42rem }
+.theory-framework-page .framework-intro { max-width: 34em }
+.theory-single .theory-letter pre { max-width: 100%; overflow-wrap: anywhere; white-space: pre-wrap }
+.engine-points { padding-left: 1.5em; max-width: 42em; font-size: clamp(1.2rem, 1rem + .6vw, 1.7rem) }
+.engine-points li { padding: .8rem 0 .8rem .35rem; border-bottom: 1px solid var(--rule) }
+.engine-points li::marker { color: var(--red); font-family: var(--typed) }
+.engine-inventory dl > div { margin-top: .7rem }
+.engine-inventory dd { margin-top: .1rem }
+.engine-next li { margin-bottom: .7rem }
+.engine-demo a { text-decoration-color: var(--red) }
+@media (min-width: 960px) {
+ .engine-demo .engine-panel { min-height: 0; padding-block: 2rem 3rem }
+}
+@media (max-width: 540px) {
+ .theory-single .theory-gloss, .theory-single .theory-evidence { padding: .9rem }
+ .theory-single .theory-plain { padding-left: .8rem }
+}
+.theory-passage-preview { display: block; max-width: 40em; font-family: var(--book); font-size: 1.1em; line-height: 1.5; margin: .6rem 0; white-space: pre-wrap }

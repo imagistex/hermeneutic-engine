@@ -1639,7 +1639,11 @@ def render_site(copy: dict, data: dict) -> dict:
         body += f'<main id="main">{render_conversation(thread, item, copy, data)}</main>'
         heading = copy['board']['whole'] if thread == 'board' else f'{copy["board"]["thread"]} {thread}'
         files[conversation_file(thread)] = document(description, head_tags(f'{heading} · {title}', style), sheet(body))
-    from theory_readings import render_sources
+    from theory_readings import render_sources, render_theory_pages
+    for name, (heading, content) in render_theory_pages(copy, data, fill).items():
+        body = notebook_nav(copy, site, 'reading') + masthead(copy, fill, home=FRONT)
+        body += f'<main id="main">{content}</main>'
+        files[name] = document(description, head_tags(heading, style), sheet(body))
     if data.get('theory_sources'):
         body = notebook_nav(copy, site, 'reading') + masthead(copy, fill, home=FRONT)
         body += f'<main id="main">{render_sources(copy, data)}</main>'

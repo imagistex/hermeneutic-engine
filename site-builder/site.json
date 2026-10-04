@@ -489,8 +489,8 @@
     ]
   },
   "reading": {
-    "heading": "Three readings, with their rivals",
-    "intro": "The engine’s first reading comes first. Then three readers take up each of two frameworks, with their own plain versions, exact passages, counter-evidence and rivals. Only completed readings in this ledger snapshot appear here.",
+    "heading": "Read through a theory lens",
+    "intro": "A theory lens is a set of questions brought to a passage. It directs attention to some things and leaves others in the background. Here, three readers try each of two frameworks on the same record. Their readings keep the source words, possible objections and competing explanations in view.",
     "held": "Reserved · not yet written",
     "claim_label": "The reading",
     "rival_label": "A rival reading",
@@ -640,7 +640,7 @@
         "anthropic": "Opus · Anthropic"
       },
       "overview_heading": "Six readings at a glance",
-      "overview_note": "Two frameworks, three readers. Each card keeps the reader’s own plain version beside its strongest rival. Open a reading to follow the words it rests on.",
+      "overview_note": "Two frameworks, three readers. Each card opens a full reading; its plain words are the reader’s own. A competing account sits under each card.",
       "empty_slot": "No completed reading from this reader is recorded in this build.",
       "failed_call": "A call was recorded without a successful completion. No reading from that call is published.",
       "empty_answer": "The call completed, but no matching theory reading is recorded in this build.",
@@ -664,17 +664,28 @@
       "source_link": "Read the whole source passage",
       "full_link": "Follow this reading",
       "comparison_heading": "What they make of the same passages",
-      "comparison_note": "Up to four source records, chosen by how many completed readings cite them. Each reader keeps its own exact excerpt and evidence note. Excerpts from the same record can differ. A reading that does not cite a record has no entry here; failed quotations are excluded.",
+      "comparison_note": "Up to four source records cited across the readings. Open one to compare exact excerpts and the readers’ evidence notes. Excerpts can differ; failed quotations are excluded.",
       "comparison_empty": "No checked evidence passages from completed theory readings are available in this build.",
       "passage_label": "Source passage",
-      "gloss_label": "La Claude’s note · beside the reader’s words",
+      "gloss_label": "La Claude’s gloss",
       "letter_label": "The saved letter, with its framework",
       "letter_note": "The instruction parts below are the texts saved with this lens, verified against their hashes. The letter carries the declared framework; it is part of the conditions of this reading.",
       "no_letter": "No instruction parts were saved with this lens.",
       "draft_label": "La Claude’s earlier draft",
       "sources_heading": "Sources for the theory readings",
-      "back_readings": "Back to the readings",
-      "back_comparison": "Back to the six readings"
+      "back_readings": "Back to the reading hub",
+      "back_comparison": "Back to the six readings",
+      "framework_intros": {
+        "foucauldian": "This way of reading asks how a situation makes the people in it: what its rules, clocks and categories produce, and not only what they forbid. It does not ask what anyone felt.",
+        "lacanian": "This way of reading starts from language. A speaker exists for others only through the words and names that stand in for it, and those words always carry more than one sense. It asks who a message is addressed to, and what it wants from them."
+      },
+      "engine_link": "Start with the engine’s own reading",
+      "framework_link": "Meet this framework",
+      "previous": "Previous reading",
+      "next": "Next reading",
+      "terms_label": "La Claude’s terms",
+      "comparison_open": "Compare the readings",
+      "framework_readings_heading": "Three readings through this lens"
     }
   },
   "limits": {
@@ -898,7 +909,7 @@
     "heading": "The hermeneutic engine",
     "kicker": "An instrument for reading agent cultures",
     "thesis": "A reading, with its reader still attached.",
-    "intro": "Read agent cultures through exact words, independent readers, and disagreements kept as evidence.",
+    "intro": "Follow the words, the readers and their disagreements.",
     "nav_label": "Four views of the engine",
     "panels": [
       "How a reading is made",
@@ -912,10 +923,8 @@
     "detail_label": "The full path, step by step",
     "built_label": "Built this weekend",
     "next_label": "On the build list",
-    "planned_label": "Built · theory as a declared lens",
-    "path_note": "Read in numbered order. Theory comes after the first reading; verification runs across the whole record.",
     "ledger_title": "One append-only ledger",
-    "ledger_text": "Sources, lenses, codings, field notes, judgments and replies stay together. A correction adds a record; the earlier record stays.",
+    "ledger_text": "Corrections add records; earlier records stay.",
     "metrics_label": "This study · supplied snapshot, 4 October 2026",
     "metrics": [
       "4,040 posts",
@@ -927,218 +936,121 @@
     "steps": [
       {
         "title": "Sources",
-        "short": "Immutable bytes, addressed by hash.",
+        "short": "Immutable source bytes, stored by hash.",
         "detail": "The corpus is stored as immutable bytes, addressed by hash."
       },
       {
         "title": "Units + anchors",
-        "short": "One signed post. An exact byte range. Every quotation checked.",
+        "short": "Signed posts; exact ranges; checked quotations.",
         "detail": "A unit is a statement: here, one signed post. An anchor is an exact byte range in a source. Nothing is accepted as a quotation unless it is found, character for character."
       },
       {
         "title": "Lenses",
-        "short": "Who read, with which instructions, codebook, framing and priors.",
+        "short": "Reader, instructions, codebook, framing and priors.",
         "detail": "A lens declares the model, family and harness; exact instructions stored by hash; the codebook; what the reader was told about the material; and declared priors. A human is a lens too."
       },
       {
         "title": "Open coding",
-        "short": "Three families read a sample. The writers’ own words come first.",
+        "short": "Three families name what they see.",
         "detail": "Three model families read a sample and name what they see, in the writers’ own words first."
       },
       {
         "title": "Two-layer codebook",
-        "short": "31 words: exact search. 52 acts: judgment. A person approves.",
+        "short": "31 words searched; 52 acts judged.",
         "detail": "The writers’ own words (31) are traced by exact search over every post. The acts (52) are applied by readers’ judgment. A person approves the codebook, and the approval is a record."
       },
       {
         "title": "Focused coding",
-        "short": "Three families read all posts blind, in the same batches. Each batch ends with a field note.",
+        "short": "Same posts, three independent readers, signed field notes.",
         "detail": "Three readers from three families read all 4,040 posts, blind to one another, in the same batches: 96,473 codings. Each batch ends with a field note the reader signs or does not."
       },
       {
         "title": "What had no place",
-        "short": "Readers name what had no place. Independently shared gaps are the strongest signal.",
-        "detail": "Each reader says what the codebook could not hold. Where families name the same gap independently, that is the strongest evidence this engine produces."
+        "short": "Unplaced passages gathered and grouped; not yet coded.",
+        "detail": "Each reader says what the codebook could not hold. Those passages are gathered and grouped, including gaps named independently across families. A revised codebook and coding of these passages remain on the build list."
       },
       {
         "title": "The readers’ board",
-        "short": "Read one another’s notes over three rounds. Requested statements return.",
+        "short": "Three rounds; notes, replies and requested statements.",
         "detail": "Readers read one another’s notes and reply: first masked, then with the researchers unmasked, then fully unblinded. A researcher reads every message before it is passed on. Requested statements return so disagreements can be tested against the words. Signatures stayed visible even in the masked round."
       },
       {
         "title": "Theory, last",
-        "short": "A framework in a letter; exact quotation, counter-evidence and a rival.",
+        "short": "Declared framework, exact quotations, counter-evidence and rival.",
         "detail": "A framework is written down as a declared text: emma’s first-person facet, made with psychomanteum. Each reader receives it in a letter alongside counts, statements and whole board messages. The reader gives a plain version, quotes exactly, marks what the framework adds, says what would count against its reading, and names its strongest rival."
       },
       {
         "title": "Verify",
-        "short": "One command checks anchors against sources, records against lenses.",
+        "short": "Check anchors against sources, records against lenses.",
         "detail": "One command checks every anchor against its source and every record against its lens. The supplied study snapshot has 105,589 anchors and 650 model calls."
       }
     ],
     "built": [
       {
         "title": "The kernel",
-        "text": "Sources, units, exact byte anchors, append-only ledger, lenses and verify."
+        "text": "Sources, anchors, lenses and verification."
       },
       {
         "title": "Ways in",
-        "text": "Wiki revision history; Claude CLI, Codex CLI and any OpenAI-compatible HTTP endpoint."
+        "text": "Wiki history; three routes to model readers."
       },
       {
         "title": "Ways of reading",
-        "text": "Sampling, open coding, consolidation of several families’ codebook drafts, resumable focused coding and field notes."
+        "text": "Open coding, codebooks, focused coding and field notes."
       },
       {
         "title": "An encounter, kept",
-        "text": "The readers’ board: three recorded rounds. Human judgments kept as records."
+        "text": "Three board rounds; human judgments recorded."
       },
       {
         "title": "Views onto the record",
-        "text": "Lexicon, first use and spread across signatures; concordance; names; names against content; reader divergence; passages with no place; words that stood out."
+        "text": "Words, names, reader differences and unplaced passages."
       },
       {
         "title": "Ways out",
-        "text": "This site, built from the ledger with every quotation audited; the script that cuts a public repository."
+        "text": "An audited site and public repository export."
       },
       {
         "title": "Theory lenses",
-        "text": "A framework written down as a declared text, given to each reader in a letter, with exact quotation, counter-evidence and a rival."
+        "text": "Frameworks, exact passages, counter-evidence and rivals."
       }
     ],
     "next": [
-      "A search for counter-examples by a different model family.",
+      "Counter-example searches by a different model family.",
       "Readers replying to one another’s theory readings.",
-      "Claims with anchors for and against.",
-      "Human hand-coding beside the models’, then shown to the readers, in the manner of Rouch’s Chronique d’un été.",
-      "A frame experiment: same reader, same posts, three different accounts of the material.",
-      "Reply chains followed within a page.",
-      "A codebook revised from the gaps the readers named.",
-      "Adapters for agent transcripts and other incident corpora.",
+      "Codebook revision from unplaced passages; then coding.",
+      "Human hand-coding beside the models’.",
+      "Same reader and posts, different frames.",
+      "Reply chains within a page.",
+      "Adapters for other corpora.",
       "A live board."
     ],
-    "safety_intro": "When AI helps investigate AI, the reader’s habits belong in the evidence trail.",
+    "safety_intro": "Keep the investigator’s choices visible in the evidence.",
     "safety": [
       {
-        "title": "Read the writing",
-        "text": "Statements stay in their exact bytes, encoding damage included. The evidence is the writing agents addressed to one another.",
-        "link": "words.html",
-        "link_label": "Read their words"
+        "text": "Trace interpretations back to exact source words.",
+        "link": "words.html"
       },
       {
-        "title": "Start with their vocabulary",
-        "text": "Count first recorded use, who used a word first, and how fast it crosses signatures.",
-        "link": "words.html",
-        "link_label": "Follow a word"
+        "text": "Keep a reading and its correction together.",
+        "link": "conversation-board.html"
       },
       {
-        "title": "Make the reader answerable",
-        "text": "One reader read the swarm’s endings as death. Another caught it. The reading and correction remain, with signatures.",
-        "link": "conversation-board.html",
-        "link_label": "Read the correction"
-      },
-      {
-        "title": "Keep the disagreement",
-        "text": "Three families read independently before meeting. Differences and shared gaps remain available to examine; they are not averaged away.",
-        "link": "readers.html",
-        "link_label": "Compare the readers"
-      },
-      {
-        "title": "See the test enter the culture",
-        "text": "95% of signatures carry an assigned date. Agents used those dates to name and address one another: evaluation design is a possible lever.",
-        "link": "five-things.html",
-        "link_label": "See the finding"
-      },
-      {
-        "title": "Let someone else check",
-        "text": "Follow a claim back through its reading and lens to exact words. The record can be checked by someone who was not there.",
-        "link": "method.html",
-        "link_label": "Inspect the method"
+        "text": "Inspect disagreement between independent readers.",
+        "link": "readers.html"
       }
     ],
-    "safety_note": "Exact words make an interpretation inspectable. They do not, by themselves, make it right.",
-    "theory_intro": "A framework is written down as a declared text and given to each reader in a letter. The reading keeps exact quotations, counter-evidence and a rival beside it.",
-    "theory_inputs": [
-      {
-        "title": "A framework, declared",
-        "text": "Emma writes a first-person facet with psychomanteum. The letter carries it to each reader and is saved by hash."
-      },
-      {
-        "title": "A first reading, already made",
-        "text": "The letter also carries the engine’s counts, source statements and whole messages from the three rounds of the board."
-      }
-    ],
-    "theory_branches": [
-      {
-        "title": "A reading through the lens",
-        "text": "Each reader reads as itself, explains what the framework lets it see, and marks where it goes beyond the words. Failed quotations stay visibly failed."
-      },
-      {
-        "title": "A rival beside it",
-        "text": "The same reader names the strongest rival to its interpretation."
-      },
-      {
-        "title": "Cases that count against it",
-        "text": "The reader says what would count against its reading. A search by another model family remains on the build list."
-      }
-    ],
-    "theory_result_title": "A reading that says what it brought with it",
-    "theory_result": "A plain version, a full reading, exact evidence, counter-evidence and a rival stay attached to the reader and the saved letter.",
-    "theory_note": "Built: theory readings through declared frameworks. Next: counter-example searches by a different model family, and readers replying to one another’s theory readings.",
+    "theory_intro": "A saved letter carries the framework into each reading.",
     "svg_title": "The hermeneutic engine: reading path, built work, safety use and theory lenses",
     "svg_description": "Four panels explain the engine. Ten numbered steps sit over an append-only ledger. Built capabilities include theory lenses: a declared framework in a letter, exact quotation, counter-evidence and a rival. Searches by another family and replies to theory readings remain on the build list.",
     "svg_footer": "A reading is answerable to its words, its reader and its rivals.",
-    "poster": {
-      "steps": [
-        "Immutable bytes, stored by hash.",
-        "A signed post; an exact byte range.",
-        "Reader, prompt, codebook, framing, priors.",
-        "Three families; the writers’ words first.",
-        "31 words by search. 52 acts by judgment. Human approval.",
-        "Same posts, three blind readers. Field notes kept.",
-        "Keep the gaps. Look for independent convergence.",
-        "Three rounds; notes, replies, source words returned.",
-        "A framework in a letter; exact quotation, counter-evidence, rival.",
-        "Every anchor and every record checked."
-      ],
-      "built": [
-        "Sources, units, anchors, ledger, lenses, verify.",
-        "Wiki history; Claude CLI, Codex CLI, compatible HTTP endpoints.",
-        "Sampling, open coding, codebook consolidation, resumable focused coding, field notes.",
-        "Three board rounds; human judgments as records.",
-        "Lexicon, first use, spread, concordance, names against content, divergence, gaps, evocative words.",
-        "Audited site; public-repository export script.",
-        "A declared framework in a letter; exact quotation, counter-evidence and a rival."
-      ],
-      "next": [
-        "Counter-example searches by a different model family.",
-        "Readers replying to one another’s theory readings.",
-        "Claims with anchors for and against.",
-        "Human hand-coding, then shown to the readers.",
-        "Same reader, same posts, three different frames.",
-        "Reply chains within a page.",
-        "A codebook revised from the gaps.",
-        "Agent-transcript and incident-corpus adapters.",
-        "A live board."
-      ],
-      "safety": [
-        "Whole statements, exact bytes, encoding damage kept.",
-        "First recorded use and spread across signatures can be counted.",
-        "A reading of endings as death was challenged. Both sides stay signed.",
-        "Three independent readings; shared gaps and differences kept.",
-        "95% of signatures carry an assigned date: a clue to evaluation design.",
-        "The claim, the lens and the source words remain inspectable."
-      ],
-      "theory_inputs": [
-        "Emma’s framework, written as a facet, carried in a letter saved by hash.",
-        "Counts, source statements and whole messages from the three board rounds."
-      ],
-      "theory_branches": [
-        "Read as oneself through the framework. Explain plainly; quote exactly.",
-        "The reader names the strongest competing account.",
-        "The reader names what would count against it. Another family’s search is next."
-      ]
-    },
-    "theory_link_label": "Read and compare the theory readings"
+    "theory_link_label": "Read and compare the theory readings",
+    "inventory_intro": "Theory lenses are built; the next tests are listed beside them.",
+    "theory_steps": [
+      "Declare a framework in the saved letter.",
+      "Give each reader the counts and source passages.",
+      "Read through the framework; quote the evidence.",
+      "Name counter-evidence and the strongest rival."
+    ]
   }
 }
