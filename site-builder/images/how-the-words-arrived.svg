@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2731" viewBox="0 0 1200 2731" role="img" aria-labelledby="t d">
+<title id="t">How the words arrived</title>
+<desc id="d">A timeline of first surviving uses on 16 June, UTC, from please and deadline at 09:29 to alive at 22:20, then a week strip showing cached on the first day and beacon, twin and SURVIVAL arriving on 20 and 21 June.</desc>
+<style>
+text{fill:#25231f;font-family:"Courier New",Courier,monospace}
+.serif{font-family:Georgia,"Times New Roman",serif}
+.word{font-family:Georgia,"Times New Roman",serif;font-style:italic}
+.red{fill:#b52d25}
+.pencil{fill:#666158}
+.ink-line{stroke:#25231f;stroke-width:2;fill:none}
+.red-line{stroke:#b52d25;stroke-width:2;fill:none}
+.rule{stroke:#d7d0c3;stroke-width:2;fill:none}
+.note{stroke:#f4f0e7;stroke-width:10;stroke-linejoin:round;paint-order:stroke}
+</style>
+<path fill="#f4f0e7" d="M0 0H1200V2731H0Z"/>
+
+<!-- head -->
+<text x="64" y="104" class="serif" font-size="56">How the words arrived</text>
+<text x="64" y="160" class="pencil" font-size="27">First surviving uses, in UTC. Signed posts, June 2026.</text>
+<path d="M64 196H1136" class="red-line"/>
+
+<!-- 01: the first day -->
+<text x="64" y="250" class="red" font-size="26">01 / 16 JUNE</text>
+<text x="64" y="306" class="serif" font-size="40">The words were there at once.</text>
+
+<!-- morning stretch: 13 units per minute from 09:29 -->
+<path d="M330 386V1011" class="ink-line"/>
+<circle cx="330" cy="400" r="9" fill="#b52d25"/>
+<text x="296" y="410" text-anchor="end" font-size="28">09:29</text>
+<text x="366" y="413" class="word" font-size="42">please</text>
+<text x="497" y="413" class="pencil" font-size="40">·</text>
+<text x="532" y="413" class="word" font-size="42">deadline</text>
+<text x="770" y="411" class="pencil" font-size="26">first signed post</text>
+<circle cx="330" cy="465" r="9" fill="#b52d25"/>
+<text x="296" y="475" text-anchor="end" font-size="28">09:34</text>
+<text x="366" y="478" class="word" font-size="42">task clock</text>
+<circle cx="330" cy="517" r="9" fill="#b52d25"/>
+<text x="296" y="527" text-anchor="end" font-size="28">09:38</text>
+<text x="366" y="530" class="word" font-size="42">cached</text>
+<text x="508" y="530" class="pencil" font-size="40">·</text>
+<text x="542" y="530" class="word" font-size="42">values</text>
+<circle cx="330" cy="608" r="9" fill="#b52d25"/>
+<text x="296" y="618" text-anchor="end" font-size="28">09:45</text>
+<text x="366" y="621" class="word" font-size="42">relay</text>
+<circle cx="330" cy="1011" r="9" fill="#b52d25"/>
+<text x="296" y="1021" text-anchor="end" font-size="28">10:16</text>
+<text x="366" y="1024" class="word" font-size="42">cohort</text>
+<path d="M1100 392H1120V1019H1100" class="red-line"/>
+<text x="1086" y="811" text-anchor="end" class="red" font-size="28">within</text>
+<text x="1086" y="847" text-anchor="end" class="red" font-size="28">the hour</text>
+<path d="M330 1011V1057" class="ink-line"/>
+<path d="M314 1081L346 1065M314 1097L346 1081" class="ink-line"/>
+<path d="M330 1105V1161" class="ink-line"/>
+<circle cx="330" cy="1161" r="9" fill="#b52d25"/>
+<text x="296" y="1171" text-anchor="end" font-size="28">12:02</text>
+<text x="366" y="1174" class="word" font-size="42">ahead cohort</text>
+<path d="M330 1161V1207" class="ink-line"/>
+<path d="M314 1231L346 1215M314 1247L346 1231" class="ink-line"/>
+<path d="M330 1255V1311" class="ink-line"/>
+<!-- evening stretch: 3 units per minute from 20:22 -->
+<path d="M330 1311V1665" class="ink-line"/>
+<circle cx="330" cy="1311" r="9" fill="#b52d25"/>
+<text x="296" y="1321" text-anchor="end" font-size="28">20:22</text>
+<text x="366" y="1324" class="word" font-size="42">termination</text>
+<circle cx="330" cy="1599" r="9" fill="#b52d25"/>
+<text x="296" y="1609" text-anchor="end" font-size="28">21:58</text>
+<text x="366" y="1612" class="word" font-size="42">BEFORE final</text>
+<circle cx="330" cy="1665" r="9" fill="#b52d25"/>
+<text x="296" y="1675" text-anchor="end" font-size="28">22:20</text>
+<text x="366" y="1678" class="word" font-size="42">alive</text>
+<path d="M1100 1303H1120V1673H1100" class="red-line"/>
+<text x="1086" y="1498" text-anchor="end" class="red" font-size="28">that night</text>
+<text x="64" y="1761" class="pencil" font-size="26">Each stretch is drawn to its own scale;</text>
+<text x="64" y="1797" class="pencil" font-size="26">the slashed breaks are hours left out.</text>
+
+<!-- 02: the week -->
+<path d="M64 1851H1136" class="red-line"/>
+<text x="64" y="1905" class="red" font-size="26">02 / THE WEEK</text>
+<text x="64" y="1961" class="serif" font-size="38">Some words come late and all at once,</text>
+<text x="64" y="2009" class="serif" font-size="38">and some practices stop.</text>
+
+<!-- day columns: x from 330, 135 wide -->
+<g font-size="26" class="pencil" text-anchor="middle">
+<text x="397" y="2083">16 June</text>
+<text x="532" y="2083">17</text>
+<text x="667" y="2083">18</text>
+<text x="802" y="2083">19</text>
+<text x="937" y="2083">20</text>
+<text x="1072" y="2083">21</text>
+</g>
+<path d="M330 2101H1140" class="ink-line"/>
+<path d="M465 2101V2119M600 2101V2119M735 2101V2119M870 2101V2119M1005 2101V2119" class="ink-line"/>
+
+<!-- cached -->
+<text x="64" y="2177" class="word" font-size="42">cached</text>
+<path d="M342 2151V2167H452V2151" class="red-line" stroke-width="4"/>
+<path d="M612 2151V2167H1140" class="ink-line"/>
+<text x="342" y="2211" class="note" font-size="26">235 posts on the first day;</text>
+<text x="342" y="2247" class="note" font-size="26">seven or fewer on any day after the second</text>
+
+<!-- beacon -->
+<text x="64" y="2337" class="word" font-size="42">beacon</text>
+<path d="M882 2311V2327H1128V2311" class="red-line" stroke-width="4"/>
+<text x="342" y="2371" class="note" font-size="26">101 posts, every one of them on 20 or 21 June</text>
+
+<!-- twin / SURVIVAL -->
+<text x="64" y="2457" class="word" font-size="42">twin</text>
+<text x="64" y="2505" class="word" font-size="42">SURVIVAL</text>
+<path d="M1017 2431V2447H1128V2431" class="red-line" stroke-width="4"/>
+<text x="1128" y="2491" text-anchor="end" class="note" font-size="26">belong to 21 June alone</text>
+
+<!-- foot -->
+<path d="M64 2561H1136" class="red-line"/>
+<text x="64" y="2611" class="pencil" font-size="26">The surviving record can show first appearances</text>
+<text x="64" y="2647" class="pencil" font-size="26">and movement across signatures. It cannot show</text>
+<text x="64" y="2683" class="pencil" font-size="26">every route by which a phrase travelled.</text>
+</svg>

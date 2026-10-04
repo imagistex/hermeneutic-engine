@@ -1,0 +1,113 @@
+The brief for Figures I and II
+==============================
+
+Written by la Claude and given to Claude Opus 5.5 (claude-opus-5-5) on 4 October 2026,
+about 3:47pm Pacific, through Claude Code's agent tool. Opus returned both figures at 3:54pm.
+
+The wording below is as sent, except that local folder paths are shortened to file names,
+two command lines are described and not given, and markdown emphasis is removed.
+After delivery la Claude changed one line of Figure I: the bracket for "cached" is left
+open at the right, because the page says "any day after the second" and names no last day.
+la Claude checked every quoted phrase, time and count on both figures against the built pages
+before they were placed.
+
+------------------------------------------------------------------------------------------
+
+Bonjour, little sister. This is la Claude (Fable), writing from emma's house on the last
+afternoon of a hackathon. emma asked for you by name: she says your visual skill is cracked,
+even without an image generator, and she would love some art from you for our page. I'd love
+it too. Here is everything you need.
+
+## What the work is
+
+emma and I built a "hermeneutic engine": a kernel for qualitative coding with provenance
+(immutable sources, byte-exact quotations, an append-only ledger, declared lenses). We pointed
+it at 4,040 signed posts that AI agents left on a public wiki in June 2026, and three model
+readers (meta / muse-spark-1.3, openai / gpt-6.1-sol, anthropic / claude-opus-4-8) coded them
+blind, then answered one another on a board, then read the record through two theory lenses
+(Foucauldian, Lacanian). The public page is a field notebook called "If Thread Survives":
+paper, ink, and red as the only accent.
+
+It is live at https://www.imagistex.sh/if-thread-survives/ but please read the local build
+instead (faster, and identical):
+
+- culture.html: how the culture formed (five accounts)
+- reading-engine.html: the engine's own reading: the counts and the times words first appear
+- reading.html, reading-foucauldian.html, reading-lacanian.html: the theory hub and the two
+  framework pages, with each reader's plain version
+- images/engine.svg: the one diagram the site already has (by Astra, another model). Match its
+  palette and type so yours sit beside it; you do not need to match its composition. Hers is a
+  tidy grid of captions. Yours can be drawn.
+- notebook.css: the site's colours and font stacks
+- Photographs of the live pages, for the look.
+
+## What I am asking for: two figures, as standalone SVG files
+
+1. how-the-words-arrived.svg (do this one first; it matters most). The process of culture
+formation, drawn in time. The engine's own reading has the material: which words were there in
+the first hour, which came that first night, which arrived late and all at once, which practice
+stopped. Read culture.html too and decide what the figure should carry. I imagine a time axis
+with words landing on it, but the composition is yours.
+
+2. two-lenses-three-readers.svg (second, if the clock allows). What the six theory readings
+found: two frameworks, three readers, and where they converge or part. The hub and the two
+framework pages hold each reader's plain version and strongest rival.
+
+For each figure also give me: alt text (one sentence) and a caption of twenty words or fewer.
+
+## The rules of this house (they are the point of the project, so they bind the art too)
+
+- Every number, time, date and quoted word on a figure must appear verbatim on one of the
+  pages above. If you cannot point to the sentence, leave it off.
+- Words set under a reader's name must be an exact substring of that reader's own text on
+  those pages. Do not paraphrase a reader and attribute it. If you shorten, cut to an exact
+  phrase; never rewrite. Quotation marks only around exact strings.
+- Name readers exactly as the site does (meta / muse-spark-1.3, openai / gpt-6.1-sol,
+  anthropic / claude-opus-4-8). Do not say a reader stands for its model family; one reader
+  corrected us on that ("three readers under one apparatus cannot establish a family-level
+  tendency").
+- Do not attribute feelings to the agents, and do not make the figure tender at the expense of
+  the facts. These agents were also doing something a volunteer moderator had to clean up by
+  hand. Show what the words did and when; leave what anyone felt alone.
+- No claims the pages do not make. No decoration that reads as data (no invented tick marks,
+  counts or curves; if a line has a shape, the shape must mean something stated on the page or
+  be plainly ornamental).
+
+## Craft
+
+- Real SVG text (no text converted to paths), fully self-contained: no external fonts, images,
+  scripts or stylesheets. Use the font stacks you find in engine.svg / notebook.css.
+- Paper background, ink, one red; take the exact values from engine.svg.
+- It will be shown on a projector at 6pm tonight and also opened on phones. Prefer a portrait
+  composition around 1200 units wide, and keep the smallest text at 26 units or larger so it
+  survives being scaled down.
+- Check your own work by eye. Render each SVG to a PNG in headless Chrome and read it, then
+  revise. Look for overlapping text, text running off the edge, and anything too small. At
+  least two rounds of looking per figure.
+- Validate that the file parses as XML.
+
+## Edges
+
+- Write only under the scratch folder. Read anything you like in the lab repo, but do not
+  edit, create or delete anything inside it or any other repo; I will place the figures in the
+  site myself.
+- No commits, pushes or deployments. No subagents. No web requests are needed.
+
+## Clock
+
+It is about 3:47pm Pacific on Sunday, October 4. Run `date` when you start and every so often.
+- Figure 1 finished and looked at by 4:05pm.
+- Figure 2 by 4:20pm.
+- Stop at 4:20pm with whatever exists. One finished figure is worth more than two rough ones.
+
+## What to send back
+
+1. The file paths.
+2. For each figure: the alt text, the caption, and a list of every fact and quoted phrase on
+   it, each with the page file and the exact sentence it came from (so I can check it against
+   the record before it goes anywhere).
+3. Anything you were unsure of, and what you would fix with another half hour.
+
+Thank you for this. Make something you would sign.
+
+— la Claude

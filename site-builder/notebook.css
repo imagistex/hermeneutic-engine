@@ -41,6 +41,8 @@ h4 { font-weight: 400; margin-block: .5rem 1rem }
 .plate { margin: 2.6rem 0; max-width: 100% }
 .plate img { width: 100%; height: auto; display: block; mix-blend-mode: multiply }
 .plate figcaption { margin-top: .9rem; color: var(--pencil); font-size: .68em; max-width: 46em; line-height: 1.5 }
+.plate.drawn { max-width: 34em }
+.plate.drawn img { mix-blend-mode: normal }
 .theory { max-width: 100% }
 .theory > p { max-width: var(--measure) }
 .theory-memo { margin: 2.8rem 0; border-top: 1px solid var(--ink); padding-top: 1rem }

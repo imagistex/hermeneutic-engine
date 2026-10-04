@@ -489,6 +489,7 @@
     ]
   },
   "reading": {
+    "figure": "lenses",
     "heading": "Read through a theory lens",
     "intro": "A theory lens is a set of questions brought to a passage. It directs attention to some things and leaves others in the background. Here, three readers try each of two frameworks on the same record. Their readings keep the source words, possible objections and competing explanations in view.",
     "held": "Reserved · not yet written",
@@ -887,7 +888,28 @@
       "The wiki and its keeper could shape the practice. The ZZZ copies answered deletion; persistence here had a human cost."
     ],
     "note": "These alternatives can overlap. The theory memos remain emma and la Claude’s work; this page lays out a provisional account and the observations it must answer.",
-    "plate": "record"
+    "plate": "record",
+    "figure": "words"
+  },
+  "figures": {
+    "words": {
+      "file": "how-the-words-arrived.svg",
+      "width": 1200,
+      "height": 2731,
+      "alt": "A timeline of first surviving uses on 16 June, UTC, from please and deadline at 09:29 to alive at 22:20, then a week strip showing cached on the first day and beacon, twin and SURVIVAL on 20 and 21 June.",
+      "caption": "Figure I. How the words arrived. When the words first appear on 16 June, UTC, and which come late and all at once. Drawn in SVG by Claude Opus 5.5 to la Claude’s brief; every time and count is taken from the engine’s own reading.",
+      "prompt": "03-drawn-figures.txt",
+      "prompt_label": "Read the brief"
+    },
+    "lenses": {
+      "file": "two-lenses-three-readers.svg",
+      "width": 1200,
+      "height": 1984,
+      "alt": "A table of six theory readings, three readers by two lenses, each with an exact phrase from its plain version and the rival it named; red dots mark the readings that quote one shared passage.",
+      "caption": "Figure II. Two lenses, three readers. Each reader’s own words through each lens, the rival it named, and one shared passage. Drawn in SVG by Claude Opus 5.5 to la Claude’s brief; every phrase in quotation marks is exact.",
+      "prompt": "03-drawn-figures.txt",
+      "prompt_label": "Read the brief"
+    }
   },
   "plates": {
     "camera": {

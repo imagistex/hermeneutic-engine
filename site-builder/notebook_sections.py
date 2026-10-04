@@ -138,13 +138,23 @@ def plate(copy, key):
     return (f'<figure class="plate"><img src="images/{esc(p["file"])}" width="1200" height="800" loading="lazy" decoding="async" alt="{esc(p["alt"])}">'
             f'<figcaption>{esc(p["caption"])} <a href="images/prompts/{esc(p["prompt"])}">{esc(p["prompt_label"])}</a></figcaption></figure>')
 
+def figure(copy, key):
+    # A drawn figure (SVG with real text). Its own size is declared, it opens whole
+    # when tapped, and its brief is linked the way a plate's prompt is.
+    p=copy['figures'][key]
+    link=f' <a href="images/prompts/{esc(p["prompt"])}">{esc(p["prompt_label"])}</a>' if p.get('prompt') else ''
+    return (f'<figure class="plate drawn" id="figure-{esc(key)}"><a href="images/{esc(p["file"])}"><img src="images/{esc(p["file"])}" width="{int(p["width"])}" height="{int(p["height"])}" loading="lazy" decoding="async" alt="{esc(p["alt"])}"></a>'
+            f'<figcaption>{esc(p["caption"])}{link}</figcaption></figure>')
+
 def render_theory(copy,data,fill,site):
     from theory_readings import render_overview, render_comparison
     b=copy['reading']; labels=b['ledger']
     out=[f'<section class="sec theory" id="reading"><h2>{esc(b["heading"])}</h2><p>{esc(b["intro"])}</p>']
     out.append(f'<p class="theory-start" id="memo-engine"><a href="reading-engine.html#memo-engine">{esc(labels["engine_link"])}</a></p>')
     out.append(f'<nav class="forum-nav"><a href="#theory-overview">{esc(labels["overview_heading"])}</a><a href="#theory-comparison">{esc(labels["comparison_heading"])}</a></nav>')
-    out.extend([render_overview(copy,data), render_comparison(copy,data)])
+    out.append(render_overview(copy,data))
+    if b.get('figure'): out.append(figure(copy,b['figure']))
+    out.append(render_comparison(copy,data))
     out.append(f'<p class="small">{esc(b["note"])}</p></section>')
     return ''.join(out)
 
@@ -192,6 +202,7 @@ def render_method(copy,data,fill,site):
 
 def render_culture(copy,data,fill,site):
     b=copy['culture']; out=f'<section class="sec" id="culture"><h2>{esc(b["heading"])}</h2>{paragraphs(b["paragraphs"],fill)}'
+    if b.get('figure'): out+=figure(copy,b['figure'])
     for m in b['moments']:
         t=data['terms'][m['term']]; first=t['first']; eid=next(e['id'] for f in data['words'] for e in f['entries'] if e['term']==m['term'])
         out+=f'<article class="moment"><p class="eyebrow">{esc(m["term"])}</p><h3>{esc(m["title"])}</h3><p>{esc(m["text"])}</p>'

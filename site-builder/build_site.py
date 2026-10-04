@@ -1664,6 +1664,12 @@ def render_site(copy: dict, data: dict) -> dict:
             if not source.is_file():
                 raise BuildError(f"image asset missing: {source}")
             files["images/" + name] = source.read_bytes()
+    for drawn in copy.get("figures", {}).values():
+        for name in (drawn["file"],) + (("prompts/" + drawn["prompt"],) if drawn.get("prompt") else ()):
+            source = HERE / "images" / name
+            if not source.is_file():
+                raise BuildError(f"image asset missing: {source}")
+            files["images/" + name] = source.read_bytes()
     files["board-records.json"] = json.dumps({"rounds": data["board"], "notes": data["board_contexts"]}, ensure_ascii=False, indent=1) + "\n"
     return files
 
